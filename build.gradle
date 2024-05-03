@@ -25,6 +25,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
+	//MySQL
+	//implementation 'mysql:mysql-connector-java:8.0.32'
+	//runtimeOnly 'mysql:mysql-connector-java:8.0.32'
+
 	// Http Interface
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	compileOnly 'org.projectlombok:lombok'
