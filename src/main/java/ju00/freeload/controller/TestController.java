@@ -3,16 +3,14 @@ package ju00.freeload.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
-@RequestMapping("api/test") //(GET) http://localhost:8080/test
+@RequestMapping("api/test") //(GET) http://localhost:8080/api/test
 public class TestController {
 
     @GetMapping
     public String testController() {
-        return "Hello World!";
+        //return "Hello api!";
+        return "{\"message\": \"Hello from Spring REST API\"}";
     }
 
     @GetMapping("/testGetMapping")      //(GET) http://localhost:8080/test/testGetMapping
