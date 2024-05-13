@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("test") //(GET) http://localhost:8080/test
+@RequestMapping("api/test") //(GET) http://localhost:8080/test
 public class TestController {
 
     @GetMapping
