@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface ApiRepository extends JpaRepository<RestEntity, String> {
-    List<RestEntity> findByRestId(String RestId);
+    List<RestEntity> findByRestId(Long RestId);
 }
 
 // 스프링 데이터가 JPA 메서드 이름을 파싱해서 select * from todorepository WHERE userId = '{userId}' 쿼리 작성해 실행

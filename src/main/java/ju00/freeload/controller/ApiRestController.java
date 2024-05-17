@@ -36,15 +36,15 @@ public class ApiRestController {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @GetMapping("/{restNm}/{PPP}")
-    public List<Map<String, Object>> getRouteNmByRestNm(@PathVariable String restNm, @PathVariable String up) {
-        String sql = "SELECT * FROM rest WHERE restNm = ? AND gudClssCd = ?";
-        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, restNm, up);
-        return result;
-    }
+//    @GetMapping("/{restNm}/{up}")
+//    public List<Map<String, Object>> getRouteNmByRestNm(@PathVariable String restNm, @PathVariable String up) {
+//        String sql = "SELECT * FROM rest WHERE restNm = ? AND gudClssCd = ?";
+//        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, restNm, up);
+//        return result;
+//    }
 
     @GetMapping("/{restNm}/{up}")
-    public String testAPIController(@PathVariable String restNm, @PathVariable String up) {
-        return "{\"message\": {restNm}, {up}";
+    public String testAPIController(@PathVariable("restNm") String restNm, @PathVariable("up") String up) {
+        return restNm;
     }
 }

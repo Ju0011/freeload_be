@@ -12,8 +12,21 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Builder
 @Table(name = "rest")   // 데이터베이스에 REST테이블에 매핑
+
+//@Table(name = "rest",
+//        uniqueConstraints = {
+//                @UniqueConstraint(
+//                        name = "rest_id_unique",
+//                        columnNames = {
+//                                "rest_server_id",
+//                                "rest_server"
+//                        }
+//                ),
+//        }
+//)
 public class RestEntity {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long restId;      // 휴게소 아이디
     private String restName;  // 휴게소 이름
     private String restAddr;   // 주소
