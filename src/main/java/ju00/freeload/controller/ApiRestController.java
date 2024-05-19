@@ -45,6 +45,9 @@ public class ApiRestController {
 
     @GetMapping("/{restNm}/{up}")
     public String testAPIController(@PathVariable("restNm") String restNm, @PathVariable("up") String up) {
+//        String sql = "SELECT * FROM rest WHERE restNm = ? AND gudClssCd = ?";
+//        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, restNm, up);
+//        return result;
         return restNm;
     }
 }
