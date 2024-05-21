@@ -7,7 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter
 @NoArgsConstructor  //기본 생성자 자동 추가
 @Data
-@Entity(name = "rest")
+@Entity
 @Builder
 @AllArgsConstructor //this. 대신
 @Table(name = "rest")   // 데이터베이스에 REST테이블에 매핑
@@ -15,8 +15,6 @@ public class RestEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    // 행 17개
     @Column(name = "SvarCd" ,nullable = false, unique = true)
     private Long svarCd;      // 휴게소 아이디
 
@@ -57,4 +55,7 @@ public class RestEntity {
 //        this.routeNm = routeNm;
 //        this.gudClssCd = gudClssCd;
 //    }
+
+
+
 }
