@@ -17,7 +17,6 @@ import ju00.freeload.dto.*;
 @RequestMapping("rest")
 public class ApiRestController {
 
-
 //    private ApiRestService service;
     private final ApiRestService service;
 
@@ -38,24 +37,6 @@ public class ApiRestController {
         return ResponseEntity.ok().body(response);
 
     }
-
-
-//    @Autowired
-//    private JdbcTemplate jdbcTemplate;
-
-//    @GetMapping("/{restNm}/{up}")
-//    public List<Map<String, Object>> getRouteNmByRestNm(@PathVariable String restNm, @PathVariable String up) {
-//        String sql = "SELECT * FROM rest WHERE restNm = ? AND gudClssCd = ?";
-//        List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, restNm, up);
-//        return result;
-//    }
-
-    @GetMapping("/test/{restNm}/{up}")
-    public String testAPIController(@PathVariable("restNm") String restNm, @PathVariable("up") String up) {
-        return restNm;
-    }
-
-
 
     //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
     @GetMapping("/SvarCd/{restId}")

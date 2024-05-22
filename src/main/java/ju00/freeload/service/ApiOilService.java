@@ -1,7 +1,8 @@
 package ju00.freeload.service;
 
+import ju00.freeload.model.OilEntity;
 import ju00.freeload.model.RestEntity;
-import ju00.freeload.persistence.RestRepository;
+import ju00.freeload.persistence.OilRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -12,16 +13,10 @@ import java.util.List;
 @RequiredArgsConstructor    // final 변수들, 필드들을 매개변수로 하는 생성자를 자동으로 생성
 @Slf4j
 @Service
-public class ApiRestService {
+public class ApiOilService {
 
     //@Autowired
-    private final RestRepository repository;
-
-//   private final ApiRepository repository;
-
-    //    1. 검증(Validations) : 넘어온 엔티티가 유효한지 검사
-//    2. save() : 엔티티를 DB에 저장하고 로그를 남김
-//    3. findByRouteNmAndGudClssCd() : 저장된 엔티티를 포함하는 새 리스트 리턴
+    private final OilRepository repository;
 
     // Validations 함수
     private void validateEntity(final RestEntity RestEntity) {
@@ -45,14 +40,14 @@ public class ApiRestService {
     }
 
     //REST 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드
-    public List<RestEntity> retrieve(final String routeNm, final String gudClssCd) {
-        return repository.findByRouteNmAndGudClssCd(routeNm, gudClssCd);
-    }
-
-    public List<RestEntity> idsearch(final Long svarCd) {
-        validateCd(svarCd);
-        System.out.println("svarCd : "+svarCd);
+    public List<OilEntity> retrieve(final Long svarCd) {
         return repository.findBySvarCd(svarCd);
     }
+
+//    public List<OilEntity> idsearch(final Long svarCd) {
+//        validateCd(svarCd);
+//        System.out.println("svarCd : "+svarCd);
+//        return repository.findBySvarCd(svarCd);
+//    }
 
 }

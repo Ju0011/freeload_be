@@ -1,19 +1,16 @@
 package ju00.freeload.persistence;
 
-import ju00.freeload.model.RestEntity;
+import ju00.freeload.model.OilEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 //JpaRepository<Entity클래스, pk타입>
 @Repository
-public interface ApiRepository extends JpaRepository<RestEntity, Long> {
-    List<RestEntity> findByRouteNmAndGudClssCd(String routeNm, String gudClssCd);
+public interface OilRepository extends JpaRepository<OilEntity, Long> {
+    List<OilEntity> findBySvarCd(Long svarCd);
     //@Query("SELECT * FROM rest WHERE routeNm = routeNm AND gudClssCd = gudClssCd")
-
-    List<RestEntity> findBySvarCd(Long svarCd);
 }
 
 // 스프링 데이터가 JPA 메서드 이름을 파싱해서
