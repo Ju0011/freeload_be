@@ -19,11 +19,11 @@ public class RestEntity {
     private Long svarCd;      // 휴게소 아이디
 
     @Setter
-    @Column(name = "restNm", nullable = false)
+    @Column(name = "svarNm", nullable = false)
     private String restNm;  // 휴게소 이름
 
     @Setter
-    @Column(name = "restAddr")
+    @Column(name = "svarAddr")
     private String restAddr;   // 주소
 
     @Setter
@@ -34,28 +34,8 @@ public class RestEntity {
     @Column(name = "routeNm")
     private String routeNm;     //휴게소가 소속된 고속도로 이름
 
-//    private String rprsTelNo;
-//    private String svarCd;
-//    private String sliced_rest;
-//    private String wifi;
-//    private String satisfation;
-//    private String electric_car;
-//    private String nursing_room;
-//    private String pharmacy;
-//    private String Braile_block;
-//    private String pet;
-//    private String latitude;
-//    private String longitude;
-
-
-//    public RestEntity(Long svarCd, String restNm, String restAddr, String routeNm, String gudClssCd) {
-//        this.svarCd = svarCd;
-//        this.restNm = restNm;
-//        this.restAddr = restAddr;
-//        this.routeNm = routeNm;
-//        this.gudClssCd = gudClssCd;
-//    }
-
-
+    @Setter
+    @Column(name = "hdqrCd")    //본부코드
+    private String hdqrCd;
 
 }

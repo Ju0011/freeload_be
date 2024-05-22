@@ -14,6 +14,7 @@ public class RestDTO {
     private String restAddr;   // 주소
     private String gudClssCd;   // 상, 하행 구분
     private String routeNm;     //휴게소가 소속된 고속도로 이름
+    private String hdqrCd;      //본부코드
 
     public RestDTO(final RestEntity entity) {
         this.restId = entity.getSvarCd();
@@ -21,6 +22,7 @@ public class RestDTO {
         this.restAddr = entity.getRestAddr();
         this.routeNm = entity.getRouteNm();
         this.gudClssCd = entity.getGudClssCd();
+        this.hdqrCd = entity.getHdqrCd();
     }
 
     public static RestEntity toEntity(final RestDTO dto) {
@@ -30,6 +32,7 @@ public class RestDTO {
                 .restAddr(dto.getRestAddr())
                 .routeNm(dto.getRouteNm())
                 .gudClssCd(dto.getGudClssCd())
+                .hdqrCd(dto.getHdqrCd())
                 .build();
     }
 }
