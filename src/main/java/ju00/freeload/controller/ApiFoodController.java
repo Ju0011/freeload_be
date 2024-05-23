@@ -19,14 +19,14 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("food")
+@RequestMapping("rest")
 public class ApiFoodController {
 
 //    private ApiRestService service;
     private final ApiFoodService service;
 
      //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-    @GetMapping("/{routeNm}/{updown}")
+    @GetMapping("/food/{routeNm}/{updown}")
     public ResponseEntity<?> retrieveRestTable(@PathVariable("routeNm") Long routeNm, @PathVariable("updown") String updown) {
 
         // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다

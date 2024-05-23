@@ -55,4 +55,13 @@ public class ApiRestService {
         return repository.findBySvarCd(svarCd);
     }
 
+    public interface RouteCdProjection {
+        String getRouteCd();
+        String getRouteNm();
+    }
+
+    // 고속도로 모두 출력
+    public List<RouteCdProjection> highSearch() {
+        return repository.findDistinctRouteCdAndRouteNm();
+    }
 }

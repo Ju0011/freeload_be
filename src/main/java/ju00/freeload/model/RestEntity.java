@@ -15,7 +15,7 @@ public class RestEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SvarCd" ,nullable = false, unique = true)
+    @Column(name = "svarCd" , unique = true)
     private Long svarCd;      // 휴게소 아이디
 
     @Setter
@@ -33,6 +33,10 @@ public class RestEntity {
     @Setter
     @Column(name = "routeNm")
     private String routeNm;     //휴게소가 소속된 고속도로 이름
+
+    @Setter
+    @Column(name = "routeCd")
+    private String routeCd;     //휴게소가 소속된 고속도로 코드
 
     @Setter
     @Column(name = "hdqrCd")    //본부코드
