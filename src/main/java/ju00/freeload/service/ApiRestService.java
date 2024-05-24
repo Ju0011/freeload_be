@@ -55,6 +55,9 @@ public class ApiRestService {
         return repository.findBySvarCd(svarCd);
     }
 
+
+
+    // 고속도로 모두 출력
     public interface RouteCdProjection {
         String getRouteCd();
         String getRouteNm();
