@@ -23,6 +23,12 @@ public class ApiRestController {
      //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
     @GetMapping("/{routeNm}/{updown}")
     public ResponseEntity<?> retrieveRestTable(@PathVariable("routeNm") String routeNm, @PathVariable("updown") String updown) {
+        if(updown == "down"){
+            updown = "0";
+        }
+        else{
+            updown = "1";
+        }
 
         // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
         List<RestEntity> entities = service.retrieve(routeNm, updown);
