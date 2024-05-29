@@ -24,7 +24,7 @@ public class UsersController {
     public ResponseEntity<String> receiveKakaoUserInfo(@RequestBody UserEntity userInfo) {
         System.out.println("닉네임: " + userInfo.getNickname());
         System.out.println("이메일: " + userInfo.getEmail());
-        //System.out.println("프로필 이미지: " + userInfo.getProfileImage());
+        System.out.println("프로필 이미지: " + userInfo.getProfileImage());
 
         boolean exists = service.checkEmailExists(userInfo.getEmail());
         System.out.println("이메일 존재여부: " + exists);
@@ -37,11 +37,16 @@ public class UsersController {
         return ResponseEntity.ok("이미 가입된 회원입니다.");
     }
 
-    //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-//    @GetMapping("/SvarCd/{restId}")
-//    public ResponseEntity<?> retrieveRestTable(@PathVariable("restId") Long restId) {
-//        System.out.println("restId : " + restId);
-//
+    // 추가정보 입력 저장
+    @PostMapping("/join")
+    public ResponseEntity<?> retrieveRestTable(@RequestBody UserEntity userInfo) {
+        System.out.println("이름: " + userInfo.getUsername());
+        System.out.println("핸드폰: " + userInfo.getPhoneNum());
+        System.out.println("출생년도: " + userInfo.getBirthYear());
+        System.out.println("성별: " + userInfo.getGender());
+
+        service.saveUser(userInfo);
+
 //        // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
 //        List<RestEntity> entities = service.idsearch(restId);
 //
@@ -52,6 +57,7 @@ public class UsersController {
 //        ResponseDTO<RestDTO> response = ResponseDTO.<RestDTO>builder().data(dtos).build();
 //
 //        // (7) ResponseDTO를 리턴한다.
-//        return ResponseEntity.ok().body(response);
-//    }
+        //return ResponseEntity.ok().body(response);
+        return ResponseEntity.ok("추가입력 성공입니다");
+    }
 }

@@ -18,12 +18,30 @@ public class UserEntity {
     private String email;      // 유저 이메일
 
     @Setter
-    @Column(name = "nickname", nullable = false)
+    @Column(name = "nickname")
     private String nickname;  // 유저 닉네임
 
     @Setter
-    @Column(name = "profileImage", nullable = false)
+    @Column(name = "profile_image")
     private String profileImage;  // 유저 프로필 이미지
+
+
+    @Setter
+    @Column(name = "username")
+    private String username;  // 유저 이름
+
+    @Setter
+    @Column(name = "birthYear")
+    private Integer birthYear;  // 유저 연생
+
+
+    @Setter
+    @Column(name = "phoneNum")
+    private String phoneNum;  // 유저 핸드폰 번호
+
+    @Setter
+    @Column(name = "gender")
+    private String gender;  // 유저 성별
 
 
 }
