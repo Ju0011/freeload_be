@@ -30,7 +30,7 @@ public class FoodEntity {
 
     @Setter
     @Column(name = "bestfoodyn", nullable = false)
-    private String bestfoodyn;   // 베스트메뉴
+    private String bestfoodyn;   // 베스트 메뉴 y/n
 
     @Setter
     @Column(name = "foodCost")
