@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("auth")
 public class UsersController {
 
 //    private ApiRestService service;
     private final UserService service;
 
-    @PostMapping("/signin/kakao")
+    @PostMapping("/check")
     public ResponseEntity<String> receiveKakaoUserInfo(@RequestBody UserEntity userInfo) {
         System.out.println("닉네임: " + userInfo.getNickname());
         System.out.println("이메일: " + userInfo.getEmail());
@@ -34,7 +34,7 @@ public class UsersController {
             service.saveUser(userInfo);
         }
 
-        return ResponseEntity.ok("User info received successfully");
+        return ResponseEntity.ok("이미 가입된 회원입니다.");
     }
 
     //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
