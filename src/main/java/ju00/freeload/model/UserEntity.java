@@ -12,9 +12,10 @@ import lombok.*;
 @Table(name = "user")   // 데이터베이스에 REST테이블에 매핑
 public class UserEntity {
 
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "email" , unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;      // 유저 이메일
 
     @Setter
@@ -23,7 +24,7 @@ public class UserEntity {
 
     @Setter
     @Column(name = "profile_image")
-    private String profileImage;  // 유저 프로필 이미지
+    private String profile_image_url;  // 유저 프로필 이미지
 
 
     @Setter

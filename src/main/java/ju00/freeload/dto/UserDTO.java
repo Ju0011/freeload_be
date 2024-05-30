@@ -17,13 +17,13 @@ public class UserDTO {
     public UserDTO(final UserEntity entity) {
         this.email = entity.getEmail();
         this.nickname = entity.getNickname();
-        this.profileImage = entity.getProfileImage();
+        this.profileImage = entity.getProfile_image_url();
     }
 
     public static UserEntity toEntity(final UserDTO dto) {
         return UserEntity.builder()
                 .email(dto.getEmail())
-                .profileImage(dto.getProfileImage())
+                .profile_image_url(dto.getProfileImage())
                 .nickname(dto.getNickname())
                 .build();
     }
