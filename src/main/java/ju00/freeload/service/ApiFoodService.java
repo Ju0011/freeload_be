@@ -19,23 +19,13 @@ public class ApiFoodService {
     //@Autowired
     private final FoodRepository repository;
 
-    // Validations 함수
-    private void validateCd(final Long seq) {
-        if(seq == null) {
-            log.warn("svarCd cannot be null.");
-            throw new RuntimeException("svarCd cannot be null.");
-        }
-    }
-
-    //REST 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드
-    public List<FoodEntity> retrieve(final Long seq) {
+    // 음식 아이디로 찾기
+    public List<FoodEntity> findBySeq(final Long seq) {
         return repository.findBySeq(seq);
     }
 
-//    public List<OilEntity> idsearch(final Long svarCd) {
-//        validateCd(svarCd);
-//        System.out.println("svarCd : "+svarCd);
-//        return repository.findBySvarCd(svarCd);
-//    }
-
+    // 휴게소 아이디로 찾기
+    public List<FoodEntity> findBySvarCd(final Long svarCd) {
+        return repository.findBySvarCd(svarCd);
+    }
 }

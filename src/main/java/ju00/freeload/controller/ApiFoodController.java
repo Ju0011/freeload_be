@@ -9,55 +9,73 @@ import ju00.freeload.service.ApiFoodService;
 import ju00.freeload.service.ApiRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("rest")
+@RequestMapping("rest/food")
 public class ApiFoodController {
 
 //    private ApiRestService service;
     private final ApiFoodService service;
 
-     //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-    @GetMapping("/food/{routeNm}/{updown}")
-    public ResponseEntity<?> retrieveRestTable(@PathVariable("routeNm") Long routeNm, @PathVariable("updown") String updown) {
+    @GetMapping("/{restId}")
+    public ResponseEntity<?> getFood(
+            @PathVariable("restId") Long restId,
+            @RequestParam(value = "sort", required = false) String sort,
+            @RequestParam(value = "cursor", required = false) Integer cursor) {
 
-        // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
-        List<FoodEntity> entities = service.retrieve(routeNm);
+        System.out.println("restId: " + restId);
+        System.out.println("sort: " + sort);
+        System.out.println("cursor: " + cursor);
 
-        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO리스트로 변환한다.
+
+        // (1) 서비스 메서드의 findBySeq 사용해 테이블을 가져온다
+        List<FoodEntity> entities = service.findBySvarCd(restId);
+
+        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 FoodDTO리스트로 변환한다.
         List<FoodDTO> dtos = entities.stream().map(FoodDTO::new).collect(Collectors.toList());
 
-        // (6) 변환된 RestDTO리스트를 이용해ResponseDTO를 초기화한다.
-        ResponseDTO<FoodDTO> response = ResponseDTO.<FoodDTO>builder().data(dtos).build();
+        // (3) sort 기능 구현
+        if (sort != null) {
+            if (sort.equals("RECOMMEND")) {
+                // Removing items where recommendyn is 'N'
+                dtos.removeIf(food -> "N".equals(food.getRecommendyn()));
 
-        // (7) ResponseDTO를 리턴한다.
-        return ResponseEntity.ok().body(response);
+            } else if (sort.equals("BEST")) {
+                dtos.removeIf(food -> "N".equals(food.getBestfoodyn()));
 
+            } else if (sort.equals("SEASON")) {
+                dtos.removeIf(food -> "4".equals(food.getSeasonMenu()));
+
+            } else if (sort.equals("PREMIUM")) {
+                dtos.removeIf(food -> "N".equals(food.getPremiumyn()));
+            }
+        }
+
+        // (4) 페이지네이션 설정
+        int pageSize = 6;
+        int currentPage = cursor != null ? cursor : 0; // cursor가 null일 경우 0으로 설정
+
+        // 시작 인덱스와 끝 인덱스 계산
+        int fromIndex = currentPage * pageSize;
+        int toIndex = Math.min(fromIndex + pageSize, dtos.size());
+
+        // 만약 시작 인덱스가 리스트의 크기보다 크거나 같다면 빈 리스트 반환
+        if (fromIndex >= dtos.size()) {
+            return ResponseEntity.ok(List.of());
+        }
+
+        // 리스트에서 지정된 범위의 서브리스트를 추출
+        List<FoodDTO> pagedFoodItems = dtos.subList(fromIndex, toIndex);
+
+        // 새 ResponseDTO를 페이지네이션된 데이터를 사용해 초기화한다.
+        ResponseDTO<FoodDTO> paginatedResponse = ResponseDTO.<FoodDTO>builder().data(pagedFoodItems).build();
+
+        // (5) ResponseDTO를 리턴한다.
+        return ResponseEntity.ok().body(paginatedResponse);
     }
-
-    //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-//    @GetMapping("/SvarCd/{restId}")
-//    public ResponseEntity<?> retrieveRestTable(@PathVariable("restId") Long restId) {
-//        System.out.println("restId : " + restId);
-//
-//        // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
-//        List<RestEntity> entities = service.idsearch(restId);
-//
-//        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO리스트로 변환한다.
-//        List<RestDTO> dtos = entities.stream().map(RestDTO::new).collect(Collectors.toList());
-//
-//        // (6) 변환된 RestDTO리스트를 이용해ResponseDTO를 초기화한다.
-//        ResponseDTO<RestDTO> response = ResponseDTO.<RestDTO>builder().data(dtos).build();
-//
-//        // (7) ResponseDTO를 리턴한다.
-//        return ResponseEntity.ok().body(response);
-//    }
 }
