@@ -29,7 +29,7 @@ public class UserEntity {
 
     @Setter
     @Column(name = "username")
-    private String username;  // 유저 이름
+    private String name;  // 유저 이름
 
     @Setter
     @Column(name = "birthYear")

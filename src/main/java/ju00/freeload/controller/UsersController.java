@@ -29,7 +29,7 @@ public class UsersController {
         System.out.println("이메일 존재여부: " + exists);
 
         if (!exists) {
-            service.saveUser(userInfo);
+            //service.saveUser(userInfo);
             return ResponseEntity.ok("새로운 회원이 등록되었습니다.");
         }
 
@@ -39,7 +39,7 @@ public class UsersController {
     // 추가정보 입력 저장
     @PostMapping("/join")
     public ResponseEntity<?> retrieveRestTable(@RequestBody UserEntity userInfo) {
-        System.out.println("이름: " + userInfo.getUsername());
+        System.out.println("이름: " + userInfo.getName());
         System.out.println("핸드폰: " + userInfo.getPhoneNum());
         System.out.println("출생년도: " + userInfo.getBirthYear());
         System.out.println("성별: " + userInfo.getGender());

@@ -9,9 +9,9 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class UserDTO {
-    private String email;      //
-    private String nickname;  // 휴게소 이름
-    private String profileImage;   // 주소
+    private String email;      //유저 이메일
+    private String nickname;  // 유저 닉네임(삭제예정)
+    private String profileImage;   // 유저 프사
 
 
     public UserDTO(final UserEntity entity) {
