@@ -12,8 +12,6 @@ import lombok.*;
 @Table(name = "user")   // 데이터베이스에 REST테이블에 매핑
 public class UserEntity {
 
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "email", nullable = false, unique = true)
     private String email;      // 유저 이메일
