@@ -15,12 +15,6 @@ public class UserService {
     //@Autowired
     private final UserRepository repository;
 
-
-    //REST 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드
-//    public List<RestEntity> retrieve(final String routeNm, final String gudClssCd) {
-//        return repository.findByRouteNmAndGudClssCd(routeNm, gudClssCd);
-//    }
-
     public boolean checkEmailExists(String email) {
         return repository.existsByEmail(email);
     }

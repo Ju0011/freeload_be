@@ -10,7 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 @Builder
 @AllArgsConstructor //this. 대신
-@Table(name = "food")   // 데이터베이스에 REST테이블에 매핑
+@Table(name = "food")   // 데이터베이스에 food 테이블에 매핑
 public class FoodEntity {
 
     @Id

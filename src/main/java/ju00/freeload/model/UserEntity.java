@@ -9,7 +9,7 @@ import lombok.*;
 @Entity
 @Builder
 @AllArgsConstructor //this. 대신
-@Table(name = "user")   // 데이터베이스에 REST테이블에 매핑
+@Table(name = "user")   // 데이터베이스에 user 테이블에 매핑
 public class UserEntity {
 
     @Id
@@ -24,15 +24,13 @@ public class UserEntity {
     @Column(name = "profile_image")
     private String profile_image_url;  // 유저 프로필 이미지
 
-
     @Setter
     @Column(name = "username")
     private String name;  // 유저 이름
 
     @Setter
     @Column(name = "birthYear")
-    private Integer birthYear;  // 유저 연생
-
+    private Integer birthYear;  // 유저 출생년도
 
     @Setter
     @Column(name = "phoneNum")
@@ -42,5 +40,7 @@ public class UserEntity {
     @Column(name = "gender")
     private String gender;  // 유저 성별
 
-
+    @Setter
+    @Column(name = "save")
+    private String save;  // 유저가 저장한 휴게소(찜하기)
 }
