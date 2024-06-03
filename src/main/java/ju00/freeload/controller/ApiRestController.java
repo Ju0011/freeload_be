@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import ju00.freeload.dto.*;
 
@@ -23,7 +22,7 @@ public class ApiRestController {
      //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
     @GetMapping("/{routeNm}/{updown}")
     public ResponseEntity<?> retrieveRestTable(@PathVariable("routeNm") String routeNm, @PathVariable("updown") String updown) {
-        if(updown == "down"){
+        if(updown.equals("down")){
             updown = "0";
         }
         else{

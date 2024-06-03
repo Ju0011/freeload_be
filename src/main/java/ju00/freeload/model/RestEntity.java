@@ -42,4 +42,44 @@ public class RestEntity {
     @Column(name = "hdqrCd")    //본부코드
     private String hdqrCd;
 
+    @Setter
+    @Column(name = "rprsTelNo")    //휴게소 전화번호
+    private String rprsTelNo;
+
+    @Setter
+    @Column(name = "wifi")    //와이파이 유무
+    private String wifi;
+
+    @Setter
+    @Column(name = "satisfaction")    //만족도
+    private String satisfaction;
+
+    @Setter
+    @Column(name = "electric_car")    //전기차 충전소 유무
+    private String electric_car;
+
+    @Setter
+    @Column(name = "nursing_room")    //수유실 유무
+    private String nursing_room;
+
+    @Setter
+    @Column(name = "pharmacy")    //약국유무
+    private String pharmacy;
+
+    @Setter
+    @Column(name = "Braile_block")    //점자블록 유무
+    private String Braile_block;
+
+    @Setter
+    @Column(name = "pet")    //반려동물 시설 유무
+    private String pet;
+
+    @Setter
+    @Column(name = "latitude")    //위도
+    private String latitude;
+
+    @Setter
+    @Column(name = "longitude")    //경도
+    private String longitude;
+
 }
