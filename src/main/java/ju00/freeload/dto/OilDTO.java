@@ -22,6 +22,8 @@ public class OilDTO {
     private String gasolineAver;
     private String lpgAver;
     private String routeCode;
+    private String hydrogen;
+    private String electric;
 
     public OilDTO(final OilEntity entity) {
         this.svarCd = entity.getSvarCd();
@@ -37,6 +39,8 @@ public class OilDTO {
         this.diselAver = entity.getDiselAver();
         this.gasolineAver = entity.getGasolineAver();
         this.lpgAver = entity.getLpgAver();
+        this.hydrogen = entity.getHydrogen();
+        this.electric = entity.getElectric();
     }
 
     public static OilEntity toEntity(final OilDTO dto) {
@@ -54,6 +58,8 @@ public class OilDTO {
                 .diselAver(dto.getDiselAver())
                 .gasolineAver(dto.getGasolineAver())
                 .lpgAver(dto.getLpgAver())
+                .hydrogen(dto.getHydrogen())
+                .electric(dto.getElectric())
                 .build();
     }
 }

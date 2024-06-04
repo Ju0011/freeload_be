@@ -54,15 +54,23 @@ public class OilEntity {
     private String telNo;
 
     @Setter
-    @Column(name = "diselAver")    // 디젤 평균가격
+    @Column(name = "diselAvr")    // 디젤 평균가격
     private String diselAver;
 
     @Setter
-    @Column(name = "gasolineAver")    // 가솔린 평균가격
+    @Column(name = "gasolineAvr")    // 가솔린 평균가격
     private String gasolineAver;
 
     @Setter
-    @Column(name = "lpgAver")    // lpg 평균가격
+    @Column(name = "lpgAvr")    // lpg 평균가격
     private String lpgAver;
+
+    @Setter
+    @Column(name = "electric")    // 전기차 충전유무
+    private String electric;
+
+    @Setter
+    @Column(name = "hydrogen")    // 수소차 충전유무
+    private String hydrogen;
 
 }
