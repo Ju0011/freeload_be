@@ -18,6 +18,10 @@ public class OilDTO {
     private String routeNm;     //휴게소가 소속된 고속도로 이름
     private String oilCompany;      // 주유소 회사 이름
     private String telNo;       // 주유소 전화번호
+    private String diselAver;
+    private String gasolineAver;
+    private String lpgAver;
+    private String routeCode;
 
     public OilDTO(final OilEntity entity) {
         this.svarCd = entity.getSvarCd();
@@ -26,9 +30,13 @@ public class OilDTO {
         this.gasolinePrice = entity.getGasolinePrice();
         this.lpgPrice = entity.getLpgPrice();
         this.diselPrice = entity.getDiselPrice();
+        this.routeCode  = entity.getRouteCode();
         this.routeNm = entity.getRouteNm();
         this.oilCompany = entity.getOilCompany();
         this.telNo = entity.getTelNo();
+        this.diselAver = entity.getDiselAver();
+        this.gasolineAver = entity.getGasolineAver();
+        this.lpgAver = entity.getLpgAver();
     }
 
     public static OilEntity toEntity(final OilDTO dto) {
@@ -39,9 +47,13 @@ public class OilDTO {
                 .gasolinePrice(dto.getGasolinePrice())
                 .lpgPrice(dto.getLpgPrice())
                 .diselPrice(dto.getDiselPrice())
+                .routeCode(dto.getRouteCode())
                 .routeNm(dto.getRouteNm())
                 .oilCompany(dto.getOilCompany())
                 .telNo(dto.getTelNo())
+                .diselAver(dto.getDiselAver())
+                .gasolineAver(dto.getGasolineAver())
+                .lpgAver(dto.getLpgAver())
                 .build();
     }
 }

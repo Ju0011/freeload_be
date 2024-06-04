@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public interface OilRepository extends JpaRepository<OilEntity, Long> {
     List<OilEntity> findBySvarCd(Long svarCd);
-    //@Query("SELECT * FROM rest WHERE routeNm = routeNm AND gudClssCd = gudClssCd")
-}
+    //@Query("SELECT * FROM oil WHERE svarCd = svarCd)
 
-// 스프링 데이터가 JPA 메서드 이름을 파싱해서
-// select * from rest WHERE routeNm = '{routeNm}' and  gudClssCd = {'gudClssCd'} 쿼리 작성해 실행
+    List<OilEntity> findByRouteCode(String RouteCd);
+}

@@ -39,15 +39,14 @@ public class ApiOilService {
         }
     }
 
-    //REST 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드
+    //oil 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드
     public List<OilEntity> retrieve(final Long svarCd) {
         return repository.findBySvarCd(svarCd);
     }
 
-//    public List<OilEntity> idsearch(final Long svarCd) {
-//        validateCd(svarCd);
-//        System.out.println("svarCd : "+svarCd);
-//        return repository.findBySvarCd(svarCd);
-//    }
+    //고속도로 위 주유소 리스트 나열
+    public List<OilEntity> oilInHighWay(final String RouteCd) {
+        return repository.findByRouteCode(RouteCd);
+    }
 
 }

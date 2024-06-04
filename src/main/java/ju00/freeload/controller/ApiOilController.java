@@ -24,8 +24,8 @@ public class ApiOilController {
 //    private ApiRestService service;
     private final ApiOilService service;
 
-     //Oil 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-    @GetMapping("/{svarCd}/{updown}")
+     //Oil 휴게소 내의 주유소 출력 (상세내역)
+    @GetMapping("/detail/{svarCd}/{updown}")
     public ResponseEntity<?> retrieveRestTable(@PathVariable("svarCd") Long svarCd, @PathVariable("updown") String updown) {
 
         // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
@@ -42,21 +42,20 @@ public class ApiOilController {
 
     }
 
-//    //Oil 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-//    @GetMapping("/SvarCd/{restId}")
-//    public ResponseEntity<?> retrieveRestTable(@PathVariable("restId") Long restId) {
-//        System.out.println("restId : " + restId);
-//
-//        // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
-//        List<OilEntity> entities = service.idsearch(restId);
-//
-//        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO리스트로 변환한다.
-//        List<OilDTO> dtos = entities.stream().map(OilDTO::new).collect(Collectors.toList());
-//
-//        // (6) 변환된 RestDTO리스트를 이용해ResponseDTO를 초기화한다.
-//        ResponseDTO<OilDTO> response = ResponseDTO.<OilDTO>builder().data(dtos).build();
-//
-//        // (7) ResponseDTO를 리턴한다.
-//        return ResponseEntity.ok().body(response);
-//    }
+    //Oil - 고속도로 내의 주유소 리스트 출력
+    @GetMapping("/{RouteCd}/{updown}")
+    public ResponseEntity<?> oilInHighWay(@PathVariable("RouteCd") String RouteCd, @PathVariable("updown") String updown) {
+
+        // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
+        List<OilEntity> entities = service.oilInHighWay(RouteCd);
+
+        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO리스트로 변환한다.
+        List<OilDTO> dtos = entities.stream().map(OilDTO::new).collect(Collectors.toList());
+
+        // (6) 변환된 RestDTO리스트를 이용해ResponseDTO를 초기화한다.
+        ResponseDTO<OilDTO> response = ResponseDTO.<OilDTO>builder().data(dtos).build();
+
+        // (7) ResponseDTO를 리턴한다.
+        return ResponseEntity.ok().body(response);
+    }
 }

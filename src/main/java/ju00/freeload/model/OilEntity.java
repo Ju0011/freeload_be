@@ -38,6 +38,10 @@ public class OilEntity {
     private String diselPrice;   // 디젤 가격
 
     @Setter
+    @Column(name = "routeCode")
+    private String routeCode;     //휴게소가 소속된 고속도로 이름
+
+    @Setter
     @Column(name = "routeName")
     private String routeNm;     //휴게소가 소속된 고속도로 이름
 
@@ -48,5 +52,17 @@ public class OilEntity {
     @Setter
     @Column(name = "telNo")    // 주유소 전화번호
     private String telNo;
+
+    @Setter
+    @Column(name = "diselAver")    // 디젤 평균가격
+    private String diselAver;
+
+    @Setter
+    @Column(name = "gasolineAver")    // 가솔린 평균가격
+    private String gasolineAver;
+
+    @Setter
+    @Column(name = "lpgAver")    // lpg 평균가격
+    private String lpgAver;
 
 }
