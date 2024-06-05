@@ -28,13 +28,14 @@ public class UsersController {
         System.out.println("이메일 존재여부: " + exists);
 
 
+        // 신규회원일때
         if (!exists) {
             ResponseDTO<UserDTO> response = new ResponseDTO<>();
-            response.setMessage(true);
+            response.setMessage(false);
             System.out.println("response: " + response);
             return ResponseEntity.ok().body(response);
 
-        } else {
+        } else {    //기존유저일때
             // (1) 서비스 메서드의 checkFindEmail 메서드를 사용해 테이블을 가져온다
             List<UserEntity> entities = service.checkFindEmail(userInfo.getEmail());
 
@@ -43,7 +44,7 @@ public class UsersController {
 
             // (6) 변환된 UserDTO리스트를 이용해 ResponseDTO를 초기화한다.
             ResponseDTO<UserDTO> response = ResponseDTO.<UserDTO>builder().data(dtos).build();
-
+            response.setMessage(true);
             System.out.println("response: " + response);
             // (7) ResponseDTO를 리턴한다.
             return ResponseEntity.ok().body(response);
