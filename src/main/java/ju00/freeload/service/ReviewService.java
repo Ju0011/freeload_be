@@ -22,4 +22,26 @@ public class ReviewService {
         return repository.findBySvarCd(svarCd);
     }
 
+    public List<ReviewEntity> create(final ReviewEntity entity) {
+        // Validations
+        validate(entity);
+
+        repository.save(entity);
+        log.info("Review_id Entity Id : {} is saved.", entity.getReview_id());
+        return repository.findByEmail(entity.getEmail());
+    }
+
+    // Validations 함수
+    private void validate(final ReviewEntity entity) {
+        if(entity == null) {
+            log.warn("Entity cannot be null.");
+            throw new RuntimeException("Entity cannot be null.");
+        }
+
+        if(entity.getEmail() == null) {
+            log.warn("Unknown user.");
+            throw new RuntimeException("Unknown user.");
+        }
+    }
+
 }
