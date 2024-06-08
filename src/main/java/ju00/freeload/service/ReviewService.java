@@ -22,6 +22,10 @@ public class ReviewService {
         return repository.findBySvarCd(svarCd);
     }
 
+    public List<ReviewEntity> findAllReviews() {
+        return repository.findAll();
+    }
+
     public List<ReviewEntity> create(final ReviewEntity entity) {
         // Validations
         validate(entity);
