@@ -14,8 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 public class ReviewEntity {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")  // 아이디 자동생성
-    @GenericGenerator(name = "review_id", strategy = "uuid")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  //기본키 자동생성
     private Long review_id;      // 리뷰 아이디
 
     @Setter

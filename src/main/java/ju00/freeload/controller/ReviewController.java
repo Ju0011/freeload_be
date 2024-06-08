@@ -44,7 +44,6 @@ public class ReviewController {
     @PostMapping
     public ResponseEntity<?> createReview(@RequestBody ReviewDTO dto) {
         try {
-            String temporaryUserId = "temporary-user"; // temporary user id.
 
             // (1) ReviewEntity로 변환한다.
             ReviewEntity entity = ReviewDTO.toEntity(dto);
@@ -53,7 +52,7 @@ public class ReviewController {
             entity.setReview_id(null);
 
             // (3) 유저 아이디(이메일) 설정
-            entity.setEmail(temporaryUserId);
+            //entity.setEmail(entity);
 
             // (4) 서비스를 이용해 Review 엔티티를 생성한다.
             List<ReviewEntity> entities = service.create(entity);
