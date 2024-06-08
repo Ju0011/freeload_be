@@ -31,7 +31,11 @@ public class ReviewEntity {
     private String sliced_rest;   // 휴게소 이름
 
     @Setter
-    @Column(name = "new_date")
+    @Column(name = "storeName")
+    private String storeName;   // 휴게소 이름
+
+    @Setter
+    @Column(name = "visitedDate")
     private String new_date;     // 리뷰 생성 날짜
 
     @Setter
@@ -41,5 +45,9 @@ public class ReviewEntity {
     @Setter
     @Column(name = "content")
     private String content;     // 리뷰 내용
+
+    @Setter
+    @Column(name = "price")
+    private String price;     // 리뷰 내용
 
 }

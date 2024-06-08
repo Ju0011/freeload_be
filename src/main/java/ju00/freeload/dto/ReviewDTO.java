@@ -12,18 +12,24 @@ public class ReviewDTO {
     private String email;      //유저 이메일
     private String svarCd;  // 휴게소 코드
     private String sliced_rest;   // 휴게소 이름
-    private String new_date;        // 리뷰 생성 날짜
+    private String visitedDate;        // 리뷰 생성 날짜
     private String content;     // 리뷰 내용
     private Long review_id;
+    private String storeName;
+    private String profile_image;
+    private String price;
 
 
     public ReviewDTO(final ReviewEntity entity) {
         this.email = entity.getEmail();
         this.svarCd = entity.getSvarCd();
         this.sliced_rest = entity.getSliced_rest();
-        this.new_date = entity.getNew_date();
+        this.visitedDate = entity.getNew_date();
         this.content = entity.getContent();
         this.review_id = entity.getReview_id();
+        this.storeName = entity.getStoreName();
+        this.profile_image = entity.getProfile_image();
+        this.price = entity.getPrice();
     }
 
     public static ReviewEntity toEntity(final ReviewDTO dto) {
@@ -31,9 +37,12 @@ public class ReviewDTO {
                 .email(dto.getEmail())
                 .svarCd(dto.getSvarCd())
                 .sliced_rest(dto.getSliced_rest())
-                .new_date(dto.getNew_date())
+                .new_date(dto.getVisitedDate())
                 .content(dto.getContent())
                 .review_id(dto.getReview_id())
+                .storeName(dto.getStoreName())
+                .profile_image(dto.getProfile_image())
+                .price(dto.getPrice())
                 .build();
     }
 }
