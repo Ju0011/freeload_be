@@ -18,6 +18,7 @@ public class ReviewDTO {
     private String storeName;
     private String profile_image;
     private String price;
+    private String way;
 
 
     public ReviewDTO(final ReviewEntity entity) {
@@ -30,6 +31,7 @@ public class ReviewDTO {
         this.storeName = entity.getStoreName();
         this.profile_image = entity.getProfile_image();
         this.price = entity.getPrice();
+        this.way = entity.getWay();
     }
 
     public static ReviewEntity toEntity(final ReviewDTO dto) {
@@ -43,6 +45,7 @@ public class ReviewDTO {
                 .storeName(dto.getStoreName())
                 .profile_image(dto.getProfile_image())
                 .price(dto.getPrice())
+                .way(dto.getWay())
                 .build();
     }
 }

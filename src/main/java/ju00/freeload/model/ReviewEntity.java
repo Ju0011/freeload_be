@@ -47,6 +47,10 @@ public class ReviewEntity {
 
     @Setter
     @Column(name = "price")
-    private String price;     // 리뷰 내용
+    private String price;     // 상품 가격
+
+    @Setter
+    @Column(name = "way")
+    private String way;     // 인증 방법 (영수증,결제내역)
 
 }
