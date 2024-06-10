@@ -1,5 +1,7 @@
 package ju00.freeload.controller;
 import ju00.freeload.model.RestEntity;
+import ju00.freeload.model.ReviewEntity;
+import ju00.freeload.model.WishEntity;
 import ju00.freeload.service.ApiRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,4 +62,5 @@ public class ApiRestController {
         // (7) ResponseDTO를 리턴한다.
         return ResponseEntity.ok().body(response);
     }
+
 }

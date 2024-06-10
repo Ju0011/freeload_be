@@ -14,4 +14,5 @@ public class ResponseDTO<T> {
     private String error;
     private List<T> data;
     private boolean message;
+    private String status;
 }
