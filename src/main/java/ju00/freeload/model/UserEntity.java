@@ -3,6 +3,10 @@ package ju00.freeload.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Getter
 @NoArgsConstructor  //기본 생성자 자동 추가
 @Data
@@ -43,4 +47,7 @@ public class UserEntity {
     @Setter
     @Column(name = "save")
     private String save;  // 유저가 저장한 휴게소(찜하기)
+
+//    @OneToMany(mappedBy = "userEntity") //User 엔티티와 Wish 엔티티 사이의 일대다 관계
+//    private List<WishEntity> wishEntities = new ArrayList<>();
 }

@@ -73,12 +73,16 @@ public class ReviewController {
             // (4) 서비스를 이용해 Review 엔티티를 생성한다.
             List<ReviewEntity> entities = service.create(entity);
 
+
             // (5) 자바 스트림을 이용해 리턴된 엔티티 리스트를 ReviewDTO 리스트로 변환한다.
             List<ReviewDTO> dtos = entities.stream().map(ReviewDTO::new).collect(Collectors.toList());
 
             // (6) 변환된 ReviewDTO리스트를 이용해ResponseDTO를 초기화한다.
+            // ReviewDTO 전체출력
             //ResponseDTO<ReviewDTO> response = ResponseDTO.<ReviewDTO>builder().data(dtos).build();
-            ResponseDTO<UserDTO> response = new ResponseDTO<>();
+
+            //true, false 만 출력
+            ResponseDTO<ReviewDTO> response = new ResponseDTO<>();
             response.setMessage(true);
 
             // (7) ResponseDTO를 리턴한다.

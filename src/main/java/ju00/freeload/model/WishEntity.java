@@ -19,9 +19,17 @@ public class WishEntity {
     @Setter
     @Column(name = "email", nullable = true)
     private String email;  // 유저 이메일
+//
+//    @Setter
+//    @Column(name = "svarCd", nullable = true)
+//    private String svarCd;   // 휴게소 코드
 
-    @Setter
-    @Column(name = "svarCd", nullable = true)
-    private String svarCd;   // 휴게소 코드
+//    @ManyToOne //엔티티 사이의 다대일 관계
+//    @JoinColumn(name = "email")
+//    private UserEntity userEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "svarCd")
+    private RestEntity restEntity;
 
 }

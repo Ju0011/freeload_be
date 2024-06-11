@@ -67,4 +67,10 @@ public class ApiRestService {
     public List<RouteCdProjection> highSearch() {
         return repository.findDistinctRouteCdAndRouteNm();
     }
+
+
+    // 찜리스트에 들어있는 휴게소들 출력
+    public List<RestEntity> getRestsBySvarCds(List<String> svarCds) {
+        return repository.findBySvarCd(svarCds);
+    }
 }

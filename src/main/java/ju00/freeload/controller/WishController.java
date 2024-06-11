@@ -1,7 +1,11 @@
 package ju00.freeload.controller;
 
 import ju00.freeload.dto.*;
+import ju00.freeload.model.RestEntity;
+import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.WishEntity;
+import ju00.freeload.service.ApiRestService;
+import ju00.freeload.service.ReviewService;
 import ju00.freeload.service.WishService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +20,26 @@ import java.util.stream.Collectors;
 public class WishController {
 
     private final WishService service;
+    private final ApiRestService restService;
 
     //찜하기 기능 post
     @PostMapping("/{restId}/like")
-    public ResponseEntity<?> wishListAdd(@PathVariable("restId") String restId, @RequestBody WishDTO dto) {
+    public ResponseEntity<?> wishListAdd(@PathVariable("restId") RestEntity restId, @RequestBody WishDTO dto) {
         try {
-            // (1) ReviewEntity로 변환한다.
+            // (1) WishEntity로 변환한다.
             WishEntity entity = WishDTO.toEntity(dto);
 
             // (2) id를 null로 초기화 한다. 생성 당시에는 id가 없어야 하기 때문
             entity.setWish_id(null);
 
             // (3) 유저 아이디(이메일), 휴게소 코드 설정
+            //entity.setUserEntity(entity.getUserEntity());
             entity.setEmail(entity.getEmail());
-            entity.setSvarCd(restId);
+            entity.setRestEntity(restId);
+            //System.out.println("이메일: " + entity.getUserEntity());
+            System.out.println("이메일: " + entity.getEmail());
+            System.out.println("restId: " + entity.getRestEntity());
+            System.out.println("dto: " + dto);
 
             // (4) 서비스를 이용해 wish 엔티티를 생성한다.
             List<WishEntity> entities = service.create(entity);
@@ -54,5 +64,32 @@ public class WishController {
             response.setMessage(false);
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    //유저의 wishList 휴게소 정보 출력
+    @GetMapping("/like")
+    public ResponseEntity<?> retrieveWish(@RequestBody WishDTO dto) {
+
+        // (1) WishEntity로 변환한다.
+        WishEntity entity = WishDTO.toEntity(dto);
+
+        // (2) 서비스 메서드의 findWish를 사용해 유저가 저장한 휴게소코드들 출력
+        //List<WishEntity> entities = service.findWish(entity.getEmail());
+
+        List<String> svarCds = service.findCd(entity.getEmail());
+        System.out.println("svarCds: " + svarCds);
+
+        List<RestEntity> entities = restService.getRestsBySvarCds(svarCds);
+
+        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 ReviewDTO리스트로 변환한다.
+        List<RestDTO> dtos = entities.stream().map(RestDTO::new).collect(Collectors.toList());
+
+        // (3) 변환된 ReviewDTO리스트를 이용해ResponseDTO를 초기화한다.
+        ResponseDTO<RestDTO> response = ResponseDTO.<RestDTO>builder().data(dtos).build();
+        //response.setMessage(true);
+
+        // (4) ResponseDTO를 리턴한다.
+        return ResponseEntity.ok().body(response);
+
     }
 }

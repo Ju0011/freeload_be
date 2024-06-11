@@ -1,6 +1,4 @@
 package ju00.freeload.service;
-
-import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.WishEntity;
 import ju00.freeload.persistence.WishRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +15,16 @@ public class WishService {
     //@Autowired
     private final WishRepository repository;
 
-    public List<WishEntity> findWish(final String email) {
-        return repository.findByEmail(email);
+//    public List<WishEntity> findWish(final WishEntity entity) {
+//        return repository.findByUserEntity(entity.getUserEntity());
+//    }
+
+//    public List<WishEntity> findWish(final String email) {
+//        return repository.findSvarCdByEmail(email);
+//    }
+
+    public List<String> findCd(final String email) {
+        return repository.findSvarCdByEmail(email);
     }
 
 
@@ -27,6 +33,7 @@ public class WishService {
         validate(entity);
 
         repository.save(entity);
+        //return repository.findByUserEntity(entity.getUserEntity());
         return repository.findByEmail(entity.getEmail());
     }
 
@@ -37,6 +44,7 @@ public class WishService {
             throw new RuntimeException("Entity cannot be null.");
         }
 
+        //if(entity.getUserEntity() == null) {
         if(entity.getEmail() == null) {
             log.warn("Unknown user.");
             throw new RuntimeException("Unknown user.");

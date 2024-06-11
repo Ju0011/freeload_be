@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 @Getter
 @NoArgsConstructor  //기본 생성자 자동 추가
 @Data
@@ -81,5 +85,8 @@ public class RestEntity {
     @Setter
     @Column(name = "longitude")    //경도
     private String longitude;
+
+    @OneToMany(mappedBy = "restEntity") // rest 엔티티와 Wish 엔티티 사이의 일대다 관계
+    private List<WishEntity> wishEntities = new ArrayList<>();;
 
 }
