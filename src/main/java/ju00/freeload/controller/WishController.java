@@ -2,10 +2,8 @@ package ju00.freeload.controller;
 
 import ju00.freeload.dto.*;
 import ju00.freeload.model.RestEntity;
-import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.WishEntity;
 import ju00.freeload.service.ApiRestService;
-import ju00.freeload.service.ReviewService;
 import ju00.freeload.service.WishService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -79,17 +77,51 @@ public class WishController {
         List<String> svarCds = service.findCd(entity.getEmail());
         System.out.println("svarCds: " + svarCds);
 
+        // (3) svarCds 활용해서 Rest 테이블 출력하기
         List<RestEntity> entities = restService.getRestsBySvarCds(svarCds);
 
-        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 ReviewDTO리스트로 변환한다.
+        // (4) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO로 변환한다.
         List<RestDTO> dtos = entities.stream().map(RestDTO::new).collect(Collectors.toList());
 
-        // (3) 변환된 ReviewDTO리스트를 이용해ResponseDTO를 초기화한다.
+        // (5) 변환된 ReviewDTO리스트를 이용해ResponseDTO를 초기화한다.
         ResponseDTO<RestDTO> response = ResponseDTO.<RestDTO>builder().data(dtos).build();
-        //response.setMessage(true);
 
-        // (4) ResponseDTO를 리턴한다.
+        // (6) ResponseDTO를 리턴한다.
         return ResponseEntity.ok().body(response);
+    }
 
+    // 유저의 wishList 삭제
+    @DeleteMapping("/{restId}/like")
+    public ResponseEntity<?> deleteWish(@PathVariable("restId") String restId, @RequestBody WishDTO dto) {
+        try {
+            // (1) WishEntity로 변환
+            WishEntity entity = WishDTO.toEntity(dto);
+
+            // (2) 유저 이메일 설정
+            entity.setEmail(entity.getEmail());
+            String email = entity.getEmail();
+
+            // (3) 서비스를 이용해 entity를 삭제 한다.
+            List<WishEntity> entities = service.delete(email, restId);
+
+            // (4) 자바 스트림을 이용해 리턴된 엔티티 리스트를 TodoDTO리스트로 변환한다.
+            List<WishDTO> dtos = entities.stream().map(WishDTO::new).collect(Collectors.toList());
+
+            // (5) 변환된 TodoDTO리스트를 이용해ResponseDTO를 초기화한다.
+            //ResponseDTO<WishDTO> response = ResponseDTO.<WishDTO>builder().data(dtos).build();
+
+            // (6) ResponseDTO를 리턴한다.
+            ResponseDTO<WishDTO> response = new ResponseDTO<>();
+            response.setMessage(true);
+            if(response.isMessage()) {
+                response.setStatus("찜목록 취소 성공");
+            }
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            // (8) 혹시 예외가 나는 경우 dto대신 error에 메시지를 넣어 리턴한다.
+            String error = e.getMessage();
+            ResponseDTO<WishDTO> response = ResponseDTO.<WishDTO>builder().error(error).build();
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 }

@@ -37,6 +37,23 @@ public class WishService {
         return repository.findByEmail(entity.getEmail());
     }
 
+    public List<WishEntity> delete(final String email, final String SvarCd) {
+
+        try {
+            // (2) 엔티티를 삭제한다.
+            repository.deleteByEmailAndSvarCd(email,SvarCd);
+        } catch(Exception e) {
+            // (3) exception 발생시 id와 exception을 로깅한다.
+            log.error("error deleting entity ", SvarCd, e);
+
+            // (4) 컨트롤러로 exception을 날린다. 데이터베이스 내부 로직을 캡슐화 하기 위해 e를 리턴하지 않고 새 exception 오브젝트를 리턴한다.
+            throw new RuntimeException("error deleting entity " + SvarCd);
+        }
+        // (5) 새 리스트를 가져와 리턴한다.
+        return repository.findByEmail(email);
+    }
+
+
     // Validations 함수
     private void validate(final WishEntity entity) {
         if(entity == null) {
