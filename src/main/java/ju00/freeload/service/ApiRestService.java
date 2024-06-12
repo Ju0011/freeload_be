@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 
 @RequiredArgsConstructor    // final 변수들, 필드들을 매개변수로 하는 생성자를 자동으로 생성
@@ -16,12 +17,6 @@ public class ApiRestService {
 
     //@Autowired
     private final RestRepository repository;
-
-//   private final ApiRepository repository;
-
-    //    1. 검증(Validations) : 넘어온 엔티티가 유효한지 검사
-//    2. save() : 엔티티를 DB에 저장하고 로그를 남김
-//    3. findByRouteNmAndGudClssCd() : 저장된 엔티티를 포함하는 새 리스트 리턴
 
     // Validations 함수
     private void validateEntity(final RestEntity RestEntity) {
@@ -37,7 +32,7 @@ public class ApiRestService {
     }
 
     // Validations 함수
-    private void validateCd(final Long svarCd) {
+    private void validateCd(final String svarCd) {
         if(svarCd == null) {
             log.warn("svarCd cannot be null.");
             throw new RuntimeException("svarCd cannot be null.");
@@ -49,7 +44,7 @@ public class ApiRestService {
         return repository.findByRouteNmAndGudClssCd(routeNm, gudClssCd);
     }
 
-    public List<RestEntity> idsearch(final Long svarCd) {
+    public List<RestEntity> idsearch(final String svarCd) {
         validateCd(svarCd);
         System.out.println("svarCd : "+svarCd);
         return repository.findBySvarCd(svarCd);
@@ -72,5 +67,19 @@ public class ApiRestService {
     // 찜리스트에 들어있는 휴게소들 출력
     public List<RestEntity> getRestsBySvarCds(List<String> svarCds) {
         return repository.findBySvarCd(svarCds);
+    }
+
+    // isLiked
+    public List<RestEntity> getRestEntitiesWithLikeStatus(List<String> svarCds, List<RestEntity> entities) {
+        Set<String> svarCdSet = Set.copyOf(svarCds);
+
+        for (RestEntity entity : entities) {
+            for (String svarCd : svarCdSet) {
+                if(entity.getSvarCd().equals(svarCd)) {
+                    entity.setLiked(true);
+                }
+            }
+        }
+        return entities;
     }
 }

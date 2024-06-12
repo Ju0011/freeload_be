@@ -104,10 +104,10 @@ public class WishController {
             // (3) 서비스를 이용해 entity를 삭제 한다.
             List<WishEntity> entities = service.delete(email, restId);
 
-            // (4) 자바 스트림을 이용해 리턴된 엔티티 리스트를 TodoDTO리스트로 변환한다.
+            // (4) 자바 스트림을 이용해 리턴된 엔티티 리스트를 WishDTO 리스트로 변환한다.
             List<WishDTO> dtos = entities.stream().map(WishDTO::new).collect(Collectors.toList());
 
-            // (5) 변환된 TodoDTO리스트를 이용해ResponseDTO를 초기화한다.
+            // (5) 변환된 WishDTO 리스트를 이용해ResponseDTO를 초기화한다.
             //ResponseDTO<WishDTO> response = ResponseDTO.<WishDTO>builder().data(dtos).build();
 
             // (6) ResponseDTO를 리턴한다.
@@ -118,7 +118,7 @@ public class WishController {
             }
             return ResponseEntity.ok(response);
         } catch (Exception e) {
-            // (8) 혹시 예외가 나는 경우 dto대신 error에 메시지를 넣어 리턴한다.
+            // (7) 혹시 예외가 나는 경우 dto대신 error에 메시지를 넣어 리턴
             String error = e.getMessage();
             ResponseDTO<WishDTO> response = ResponseDTO.<WishDTO>builder().error(error).build();
             return ResponseEntity.badRequest().body(response);

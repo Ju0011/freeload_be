@@ -15,7 +15,7 @@ public interface RestRepository extends JpaRepository<RestEntity, Long> {
     List<RestEntity> findByRouteNmAndGudClssCd(String routeNm, String gudClssCd);
     //@Query("SELECT * FROM rest WHERE routeNm = routeNm AND gudClssCd = gudClssCd")
 
-    List<RestEntity> findBySvarCd(Long svarCd);
+    List<RestEntity> findBySvarCd(String svarCd);
 
 
     @Query(value = "SELECT DISTINCT routeCd, routeNm FROM rest", nativeQuery = true)

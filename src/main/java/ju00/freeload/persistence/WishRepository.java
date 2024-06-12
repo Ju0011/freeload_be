@@ -25,7 +25,5 @@ public interface WishRepository extends JpaRepository<WishEntity, Long> {
     @Modifying
     @Query("DELETE FROM WishEntity w WHERE w.email = :email AND w.restEntity.svarCd = :svarCd")
     void deleteByEmailAndSvarCd(@Param("email") String email, @Param("svarCd") String svarCd);
-
-//    List<WishEntity> findByUserEntity(UserEntity user);
 }
 

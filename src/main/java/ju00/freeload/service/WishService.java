@@ -67,5 +67,4 @@ public class WishService {
             throw new RuntimeException("Unknown user.");
         }
     }
-
 }

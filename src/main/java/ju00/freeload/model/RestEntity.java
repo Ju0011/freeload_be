@@ -20,7 +20,7 @@ public class RestEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "svarCd" , unique = true)
-    private Long svarCd;      // 휴게소 아이디
+    private String svarCd;      // 휴게소 아이디
 
     @Setter
     @Column(name = "svarNm", nullable = false)
@@ -87,6 +87,10 @@ public class RestEntity {
     private String longitude;
 
     @OneToMany(mappedBy = "restEntity") // rest 엔티티와 Wish 엔티티 사이의 일대다 관계
-    private List<WishEntity> wishEntities = new ArrayList<>();;
+    private List<WishEntity> wishEntities = new ArrayList<>();
+
+    @Setter
+    @Column(name = "isLiked")
+    private boolean isLiked;
 
 }

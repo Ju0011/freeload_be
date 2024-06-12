@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class RestDTO {
-    private Long restId;      // 휴게소 아이디
+    private String restId;      // 휴게소 아이디
     private String restName;  // 휴게소 이름
     private String restAddr;   // 주소
     private String gudClssCd;   // 상, 하행 구분
@@ -26,6 +26,8 @@ public class RestDTO {
     private String pet;
     private String latitude;
     private String longitude;
+    private Boolean isLiked;
+
 
     public RestDTO(final RestEntity entity) {
         this.restId = entity.getSvarCd();
@@ -45,6 +47,7 @@ public class RestDTO {
         this.pet = entity.getPet();
         this.latitude = entity.getLatitude();
         this.longitude = entity.getLongitude();
+        this.isLiked = entity.isLiked();
     }
 
     public static RestEntity toEntity(final RestDTO dto) {
