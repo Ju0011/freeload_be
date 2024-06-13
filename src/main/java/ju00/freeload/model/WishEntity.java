@@ -5,13 +5,13 @@ import lombok.*;
 
 @Getter
 @NoArgsConstructor  //기본 생성자 자동 추가
-@Data
 @Entity
 @Builder
 @AllArgsConstructor //this. 대신
 @Table(name = "Wishlist")   //
 public class WishEntity {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  //기본키 자동생성
     private Long wish_id;      // 찜목록 아이디
@@ -28,8 +28,18 @@ public class WishEntity {
 //    @JoinColumn(name = "email")
 //    private UserEntity userEntity;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "svarCd")
     private RestEntity restEntity;
+
+    @Override
+    public String toString() {
+        return "WishEntity{" +
+                "wish_id=" + wish_id +
+                ", email='" + email + '\'' +
+                ", restEntityId='" + (restEntity != null ? restEntity.getSvarCd() : "null") + '\'' +
+                '}';
+    }
 
 }

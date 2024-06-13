@@ -10,13 +10,13 @@ import java.util.Set;
 
 @Getter
 @NoArgsConstructor  //기본 생성자 자동 추가
-@Data
 @Entity
 @Builder
 @AllArgsConstructor //this. 대신
 @Table(name = "rest")   // 데이터베이스에 REST테이블에 매핑
 public class RestEntity {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "svarCd" , unique = true)
@@ -92,5 +92,29 @@ public class RestEntity {
     @Setter
     @Column(name = "isLiked")
     private boolean isLiked;
+
+    @Override
+    public String toString() {
+        return "RestEntity{" +
+                "svarCd='" + svarCd + '\'' +
+                ", restNm='" + restNm + '\'' +
+                ", restAddr='" + restAddr + '\'' +
+                ", gudClssCd='" + gudClssCd + '\'' +
+                ", routeNm='" + routeNm + '\'' +
+                ", routeCd='" + routeCd + '\'' +
+                ", hdqrCd='" + hdqrCd + '\'' +
+                ", rprsTelNo='" + rprsTelNo + '\'' +
+                ", wifi='" + wifi + '\'' +
+                ", satisfaction='" + satisfaction + '\'' +
+                ", electric_car='" + electric_car + '\'' +
+                ", nursing_room='" + nursing_room + '\'' +
+                ", pharmacy='" + pharmacy + '\'' +
+                ", Braile_block='" + Braile_block + '\'' +
+                ", pet='" + pet + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", isLiked=" + isLiked +
+                '}';
+    }
 
 }
