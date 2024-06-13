@@ -64,28 +64,43 @@ public class ApiRestController {
 //        return ResponseEntity.ok().body(response);
 
 
-
         // (1) WishEntity로 변환한다.
         WishEntity entity = WishDTO.toEntity(dto);
 
-        // (2) 유저 이메일을 통해 찜한 휴게소 코드 리스트 불러오기
-        List<String> svarCds = wishService.findCd(entity.getEmail());
-        System.out.println("entities: " + svarCds);
+        //회원일 경우
+        if (entity.getEmail() != null){
+            // (2) 유저 이메일을 통해 찜한 휴게소 코드 리스트 불러오기
+            List<String> svarCds = wishService.findCd(entity.getEmail());
+            System.out.println("entities: " + svarCds);
 
-        // (3) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
-        List<RestEntity> entities = service.idsearch(restId);
+            // (3) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
+            List<RestEntity> entities = service.idsearch(restId);
 
-        // (4) RestDTO에 isLiked 값 설정
-        List<RestEntity> setLiked = service.getRestEntitiesWithLikeStatus(svarCds,entities);
+            // (4) RestDTO에 isLiked 값 설정
+            List<RestEntity> setLiked = service.getRestEntitiesWithLikeStatus(svarCds,entities);
 
-        // (5) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO리스트로 변환한다.
-        List<RestDTO> dtos = setLiked.stream().map(RestDTO::new).collect(Collectors.toList());
+            // (5) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO리스트로 변환한다.
+            List<RestDTO> dtos = setLiked.stream().map(RestDTO::new).collect(Collectors.toList());
 
-        // (6) 변환된 RestDTO리스트를 이용해ResponseDTO를 초기화한다.
-        RestResponseDTO<RestDTO> response = RestResponseDTO.<RestDTO>builder().data(dtos).build();
+            // (6) 변환된 RestDTO리스트를 이용해ResponseDTO를 초기화한다.
+            RestResponseDTO<RestDTO> response = RestResponseDTO.<RestDTO>builder().data(dtos).build();
 
-        // (7) ResponseDTO를 리턴한다.
-        return ResponseEntity.ok().body(response);
+            // (7) ResponseDTO를 리턴한다.
+            return ResponseEntity.ok().body(response);
+
+        }else{ // 비회원일 경우
+            // (3) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
+            List<RestEntity> entities = service.idsearch(restId);
+
+            // (5) 자바 스트림을 이용해 리턴된 엔티티 리스트를 RestDTO리스트로 변환한다.
+            List<RestDTO> dtos = entities.stream().map(RestDTO::new).collect(Collectors.toList());
+
+            // (6) 변환된 RestDTO리스트를 이용해ResponseDTO를 초기화한다.
+            RestResponseDTO<RestDTO> response = RestResponseDTO.<RestDTO>builder().data(dtos).build();
+
+            // (7) ResponseDTO를 리턴한다.
+            return ResponseEntity.ok().body(response);
+        }
     }
 
 }
