@@ -39,11 +39,16 @@ public class ApiRestService {
         }
     }
 
-    //REST 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드
-    public List<RestEntity> retrieve(final String routeNm, final String gudClssCd) {
-        return repository.findByRouteNmAndGudClssCd(routeNm, gudClssCd);
+    //REST 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드 - 고속도로 위 휴게소 리스트
+//    public List<RestEntity> retrieve(final String routeNm, final String gudClssCd) {
+//        return repository.findByRouteNmAndGudClssCd(routeNm, gudClssCd);
+//    }
+
+    public List<RestEntity> retrieve(final String routeNm, final String updown) {
+        return repository.findByRouteNmAndGudClssCd(routeNm, updown);
     }
 
+    // 단일검색 메소드
     public List<RestEntity> idsearch(final String svarCd) {
         validateCd(svarCd);
         System.out.println("svarCd : "+svarCd);

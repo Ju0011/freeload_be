@@ -6,7 +6,6 @@ import ju00.freeload.dto.RestDTO;
 import ju00.freeload.model.FoodEntity;
 import ju00.freeload.model.RestEntity;
 import ju00.freeload.service.ApiFoodService;
-import ju00.freeload.service.ApiRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +24,12 @@ public class ApiFoodController {
     @GetMapping("/{restId}")
     public ResponseEntity<?> getFood(
             @PathVariable("restId") Long restId,
-            @RequestParam(value = "sort", required = false) String sort,
-            @RequestParam(value = "cursor", required = false) Integer cursor) {
+            @RequestParam(value = "sort", required = false) String sort)
+            //@RequestParam(value = "cursor", required = false) Integer cursor)
+            {
 
         System.out.println("restId: " + restId);
         System.out.println("sort: " + sort);
-        System.out.println("cursor: " + cursor);
 
 
         // (1) 서비스 메서드의 findBySeq 사용해 테이블을 가져온다
@@ -56,24 +55,24 @@ public class ApiFoodController {
             }
         }
 
-        // (4) 페이지네이션 설정
-        int pageSize = 6;
-        int currentPage = cursor != null ? cursor : 0; // cursor가 null일 경우 0으로 설정
+//        // (4) 페이지네이션 설정
+//        int pageSize = 6;
+//        int currentPage = cursor != null ? cursor : 0; // cursor가 null일 경우 0으로 설정
+//
+//        // 시작 인덱스와 끝 인덱스 계산
+//        int fromIndex = currentPage * pageSize;
+//        int toIndex = Math.min(fromIndex + pageSize, dtos.size());
+//
+//        // 만약 시작 인덱스가 리스트의 크기보다 크거나 같다면 빈 리스트 반환
+//        if (fromIndex >= dtos.size()) {
+//            return ResponseEntity.ok(List.of());
+//        }
+//
+//        // 리스트에서 지정된 범위의 서브리스트를 추출
+//        List<FoodDTO> pagedFoodItems = dtos.subList(fromIndex, toIndex);
 
-        // 시작 인덱스와 끝 인덱스 계산
-        int fromIndex = currentPage * pageSize;
-        int toIndex = Math.min(fromIndex + pageSize, dtos.size());
-
-        // 만약 시작 인덱스가 리스트의 크기보다 크거나 같다면 빈 리스트 반환
-        if (fromIndex >= dtos.size()) {
-            return ResponseEntity.ok(List.of());
-        }
-
-        // 리스트에서 지정된 범위의 서브리스트를 추출
-        List<FoodDTO> pagedFoodItems = dtos.subList(fromIndex, toIndex);
-
-        // 새 ResponseDTO를 페이지네이션된 데이터를 사용해 초기화한다.
-        ResponseDTO<FoodDTO> paginatedResponse = ResponseDTO.<FoodDTO>builder().data(pagedFoodItems).build();
+        // (4) 새 ResponseDTO를 dto 사용해 초기화한다.
+        ResponseDTO<FoodDTO> paginatedResponse = ResponseDTO.<FoodDTO>builder().data(dtos).build();
 
         // (5) ResponseDTO를 리턴한다.
         return ResponseEntity.ok().body(paginatedResponse);
