@@ -6,6 +6,7 @@ import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.RouteEntity;
 import ju00.freeload.model.UserEntity;
 import ju00.freeload.persistence.ReivewRepository;
+import ju00.freeload.persistence.RestRepository;
 import ju00.freeload.service.ApiRestService;
 import ju00.freeload.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class ReviewController {
 
     private final ReviewService service;
+    private final RestRepository restRepository;
 
     //review 테이블 - 한 유저의 모든 리뷰 출력
     @GetMapping("/all")
@@ -67,6 +69,10 @@ public class ReviewController {
 
             // (1) ReviewEntity로 변환한다.
             ReviewEntity entity = ReviewDTO.toEntity(dto);
+            String svarCd = entity.getSvarCd();
+            String restNm = restRepository.findRestNmBySvarCd(svarCd);
+            entity.setRestNm(restNm);
+
 
             // (2) id를 null로 초기화 한다. 생성 당시에는 id가 없어야 하기 때문
             entity.setReview_id(null);

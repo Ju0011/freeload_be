@@ -24,6 +24,8 @@ public interface RestRepository extends JpaRepository<RestEntity, Long> {
 
     @Query("SELECT r FROM RestEntity r WHERE r.svarCd IN :svarCds")
     List<RestEntity> findBySvarCd(@Param("svarCds") List<String> svarCds);
+
+    String findRestNmBySvarCd(String svarCd);
 }
 
 // 스프링 데이터가 JPA 메서드 이름을 파싱해서

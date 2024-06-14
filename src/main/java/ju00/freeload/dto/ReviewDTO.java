@@ -11,7 +11,7 @@ import lombok.Data;
 public class ReviewDTO {
     private String email;      //유저 이메일
     private String svarCd;  // 휴게소 코드
-    private String sliced_rest;   // 휴게소 이름
+    private String restNm;   // 휴게소 이름
     private String visitedDate;        // 리뷰 생성 날짜
     private String content;     // 리뷰 내용
     private Long review_id;
@@ -24,7 +24,7 @@ public class ReviewDTO {
     public ReviewDTO(final ReviewEntity entity) {
         this.email = entity.getEmail();
         this.svarCd = entity.getSvarCd();
-        this.sliced_rest = entity.getSliced_rest();
+        this.restNm = entity.getRestNm();
         this.visitedDate = entity.getNew_date();
         this.content = entity.getContent();
         this.review_id = entity.getReview_id();
@@ -38,7 +38,7 @@ public class ReviewDTO {
         return ReviewEntity.builder()
                 .email(dto.getEmail())
                 .svarCd(dto.getSvarCd())
-                .sliced_rest(dto.getSliced_rest())
+                .restNm(dto.getRestNm())
                 .new_date(dto.getVisitedDate())
                 .content(dto.getContent())
                 .review_id(dto.getReview_id())

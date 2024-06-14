@@ -20,7 +20,7 @@ public class UsersController {
 
     private final UserService service;
 
-    //review 테이블 - 한 유저의 모든 리뷰 출력
+    //유저의 상세정보 출력
     @GetMapping("/all")
     public ResponseEntity<?> retrieveAll(@RequestBody UserEntity entity) {
 

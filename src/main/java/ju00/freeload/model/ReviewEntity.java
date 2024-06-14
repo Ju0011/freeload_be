@@ -26,12 +26,12 @@ public class ReviewEntity {
     private String svarCd;   // 휴게소 코드
 
     @Setter
-    @Column(name = "sliced_rest")
-    private String sliced_rest;   // 휴게소 이름
+    @Column(name = "restNm")
+    private String restNm;   // 휴게소 이름
 
     @Setter
     @Column(name = "storeName")
-    private String storeName;   // 휴게소 이름
+    private String storeName;   // 상점 이름
 
     @Setter
     @Column(name = "visitedDate")
