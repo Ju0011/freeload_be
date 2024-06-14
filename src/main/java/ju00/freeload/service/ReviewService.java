@@ -22,8 +22,8 @@ public class ReviewService {
         return repository.findBySvarCd(svarCd);
     }
 
-    public List<ReviewEntity> findAllReviews() {
-        return repository.findAll();
+    public List<ReviewEntity> findAllReviewsByEmail(final String email) {
+        return repository.findAllByEmail(email);
     }
 
     public List<ReviewEntity> create(final ReviewEntity entity) {

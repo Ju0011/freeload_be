@@ -10,24 +10,30 @@ import lombok.Data;
 @Data
 public class UserDTO {
     private String email;      //유저 이메일
-    private String nickname;  // 유저 닉네임(삭제예정)
+    private String username;  // 유저 닉네임(삭제예정)
     private String profileImage;   // 유저 프사
     private String phoneNum;        // 유저 핸드폰 번호
+    private Integer birthYear;
+    private String gender;
 
 
     public UserDTO(final UserEntity entity) {
         this.email = entity.getEmail();
-        this.nickname = entity.getNickname();
+        this.username = entity.getName();
         this.profileImage = entity.getProfile_image_url();
         this.phoneNum = entity.getPhoneNum();
+        this.birthYear = entity.getBirthYear();
+        this.gender = entity.getGender();
     }
 
     public static UserEntity toEntity(final UserDTO dto) {
         return UserEntity.builder()
                 .email(dto.getEmail())
                 .profile_image_url(dto.getProfileImage())
-                .nickname(dto.getNickname())
+                .nickname(dto.getUsername())
                 .phoneNum(dto.getPhoneNum())
+                .birthYear(dto.getBirthYear())
+                .gender(dto.getGender())
                 .build();
     }
 }

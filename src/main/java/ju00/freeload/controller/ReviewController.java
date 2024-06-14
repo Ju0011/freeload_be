@@ -3,6 +3,8 @@ package ju00.freeload.controller;
 import ju00.freeload.dto.*;
 import ju00.freeload.model.RestEntity;
 import ju00.freeload.model.ReviewEntity;
+import ju00.freeload.model.RouteEntity;
+import ju00.freeload.model.UserEntity;
 import ju00.freeload.persistence.ReivewRepository;
 import ju00.freeload.service.ApiRestService;
 import ju00.freeload.service.ReviewService;
@@ -20,12 +22,14 @@ public class ReviewController {
 
     private final ReviewService service;
 
-    //review 테이블 출력
+    //review 테이블 - 한 유저의 모든 리뷰 출력
     @GetMapping("/all")
-    public ResponseEntity<?> retrieveAll() {
+    public ResponseEntity<?> retrieveAll(@RequestBody ReviewEntity entity) {
+
+        String email = entity.getEmail();
 
         // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
-        List<ReviewEntity> entities = service.findAllReviews();
+        List<ReviewEntity> entities = service.findAllReviewsByEmail(email);
 
         // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 ReviewDTO리스트로 변환한다.
         List<ReviewDTO> dtos = entities.stream().map(ReviewDTO::new).collect(Collectors.toList());

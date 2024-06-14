@@ -1,5 +1,4 @@
 package ju00.freeload.controller;
-import ju00.freeload.model.OilEntity;
 import ju00.freeload.model.RestEntity;
 import ju00.freeload.model.WishEntity;
 import ju00.freeload.persistence.WishRepository;
@@ -7,12 +6,11 @@ import ju00.freeload.service.ApiRestService;
 import ju00.freeload.service.WishService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import ju00.freeload.dto.*;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -23,7 +21,9 @@ public class ApiRestController {
     private final WishService wishService;
     private final WishRepository wishRepository;
 
+
      //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
+
     @GetMapping("/{routeNm}/{updown}")
     public ResponseEntity<?> retrieveRestTable(@PathVariable("routeNm") String routeNm, @PathVariable("updown") String updown) {
         if(updown.equals("down")){

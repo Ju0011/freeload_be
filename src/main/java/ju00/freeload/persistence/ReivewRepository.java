@@ -14,6 +14,8 @@ public interface ReivewRepository extends JpaRepository<ReviewEntity, Long> {
 
     List<ReviewEntity> findByEmail(String email);
 
+    List<ReviewEntity> findAllByEmail(String email);
+
     List<ReviewEntity> findAll();
 }
 

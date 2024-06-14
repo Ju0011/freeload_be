@@ -1,7 +1,9 @@
 package ju00.freeload.controller;
 
 import ju00.freeload.dto.ResponseDTO;
+import ju00.freeload.dto.ReviewDTO;
 import ju00.freeload.dto.UserDTO;
+import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.UserEntity;
 import ju00.freeload.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,26 @@ import java.util.stream.Collectors;
 public class UsersController {
 
     private final UserService service;
+
+    //review 테이블 - 한 유저의 모든 리뷰 출력
+    @GetMapping("/all")
+    public ResponseEntity<?> retrieveAll(@RequestBody UserEntity entity) {
+
+        String email = entity.getEmail();
+
+        // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
+        List<UserEntity> entities = service.findDetailByEmail(email);
+
+        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 ReviewDTO리스트로 변환한다.
+        List<UserDTO> dtos = entities.stream().map(UserDTO::new).collect(Collectors.toList());
+
+        // (3) 변환된 ReviewDTO리스트를 이용해ResponseDTO를 초기화한다.
+        ResponseDTO<UserDTO> response = ResponseDTO.<UserDTO>builder().data(dtos).build();
+
+        // (4) ResponseDTO를 리턴한다.
+        return ResponseEntity.ok().body(response);
+
+    }
 
     @PostMapping("/check")
     public ResponseEntity<ResponseDTO<UserDTO>> receiveKakaoUserInfo(@RequestBody UserEntity userInfo) {
