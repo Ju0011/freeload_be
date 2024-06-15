@@ -1,7 +1,6 @@
 package ju00.freeload.dto;
 
 import ju00.freeload.model.FoodEntity;
-import ju00.freeload.model.OilEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

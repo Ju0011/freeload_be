@@ -2,9 +2,7 @@ package ju00.freeload.controller;
 
 import ju00.freeload.dto.FoodDTO;
 import ju00.freeload.dto.ResponseDTO;
-import ju00.freeload.dto.RestDTO;
 import ju00.freeload.model.FoodEntity;
-import ju00.freeload.model.RestEntity;
 import ju00.freeload.service.ApiFoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

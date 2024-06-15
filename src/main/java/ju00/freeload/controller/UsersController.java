@@ -1,9 +1,7 @@
 package ju00.freeload.controller;
 
 import ju00.freeload.dto.ResponseDTO;
-import ju00.freeload.dto.ReviewDTO;
 import ju00.freeload.dto.UserDTO;
-import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.UserEntity;
 import ju00.freeload.service.UserService;
 import lombok.RequiredArgsConstructor;

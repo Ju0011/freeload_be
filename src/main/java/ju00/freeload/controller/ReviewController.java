@@ -1,13 +1,8 @@
 package ju00.freeload.controller;
 
 import ju00.freeload.dto.*;
-import ju00.freeload.model.RestEntity;
 import ju00.freeload.model.ReviewEntity;
-import ju00.freeload.model.RouteEntity;
-import ju00.freeload.model.UserEntity;
-import ju00.freeload.persistence.ReivewRepository;
 import ju00.freeload.persistence.RestRepository;
-import ju00.freeload.service.ApiRestService;
 import ju00.freeload.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -2,10 +2,8 @@ package ju00.freeload.controller;
 
 import ju00.freeload.dto.OilDTO;
 import ju00.freeload.dto.ResponseDTO;
-import ju00.freeload.dto.RestDTO;
 import ju00.freeload.model.OilEntity;
 import ju00.freeload.service.ApiOilService;
-import ju00.freeload.service.ApiRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

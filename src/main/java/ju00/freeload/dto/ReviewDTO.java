@@ -1,7 +1,6 @@
 package ju00.freeload.dto;
 
 import ju00.freeload.model.ReviewEntity;
-import ju00.freeload.model.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

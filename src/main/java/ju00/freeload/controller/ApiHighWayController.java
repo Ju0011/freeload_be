@@ -2,13 +2,10 @@ package ju00.freeload.controller;
 
 import ju00.freeload.dto.HighWayDTO;
 import ju00.freeload.dto.ResponseDTO;
-import ju00.freeload.dto.RestDTO;
-import ju00.freeload.model.RestEntity;
 import ju00.freeload.service.ApiRestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

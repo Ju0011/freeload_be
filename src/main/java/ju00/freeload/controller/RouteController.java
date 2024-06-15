@@ -3,7 +3,6 @@ package ju00.freeload.controller;
 import ju00.freeload.dto.ResponseDTO;
 import ju00.freeload.dto.ReviewDTO;
 import ju00.freeload.dto.RouteDTO;
-import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.RouteEntity;
 import ju00.freeload.service.RouteService;
 import lombok.RequiredArgsConstructor;
