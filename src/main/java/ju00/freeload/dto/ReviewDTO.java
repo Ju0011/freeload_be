@@ -18,6 +18,7 @@ public class ReviewDTO {
     private String profile_image;
     private String price;
     private String way;
+    private String filePath;
 
 
     public ReviewDTO(final ReviewEntity entity) {
@@ -31,6 +32,7 @@ public class ReviewDTO {
         this.profile_image = entity.getProfile_image();
         this.price = entity.getPrice();
         this.way = entity.getWay();
+        this.filePath = entity.getFilePath();
     }
 
     public static ReviewEntity toEntity(final ReviewDTO dto) {
@@ -45,6 +47,7 @@ public class ReviewDTO {
                 .profile_image(dto.getProfile_image())
                 .price(dto.getPrice())
                 .way(dto.getWay())
+                .filePath(dto.getFilePath())
                 .build();
     }
 }

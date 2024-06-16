@@ -53,4 +53,8 @@ public class ReviewEntity {
     @Column(name = "way")
     private String way;     // 인증 방법 (영수증,결제내역)
 
+    @Setter
+    @Column(name = "filePath")
+    private String filePath;     // 리뷰에 올린 사진 저장 경로
+
 }
