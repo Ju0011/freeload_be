@@ -18,4 +18,8 @@ public class CloudinaryConfig {
                 "api_secret", "QNhatzd8sdrFyGv1Wc61_D_3r4c");
         return new Cloudinary(config);
     }
+
+    //https://api.cloudinary.com/v1_1/dvlxjfr1t/image/upload
+    //file
+    //upload_prese = freeload_be
 }
