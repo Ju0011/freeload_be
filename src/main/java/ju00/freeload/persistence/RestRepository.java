@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 //JpaRepository<Entity클래스, pk타입>
@@ -25,6 +24,7 @@ public interface RestRepository extends JpaRepository<RestEntity, Long> {
     @Query("SELECT r FROM RestEntity r WHERE r.svarCd IN :svarCds")
     List<RestEntity> findBySvarCd(@Param("svarCds") List<String> svarCds);
 
+    @Query("SELECT r.restNm FROM RestEntity r WHERE r.svarCd = :svarCd")
     String findRestNmBySvarCd(String svarCd);
 }
 
