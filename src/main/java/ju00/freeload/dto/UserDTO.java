@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class UserDTO {
     private String email;      //유저 이메일
-    private String username;  // 유저 닉네임(삭제예정)
+    private String username;  // 유저 이름
     private String profileImage;   // 유저 프사
     private String phoneNum;        // 유저 핸드폰 번호
     private Integer birthYear;
@@ -19,7 +19,7 @@ public class UserDTO {
 
     public UserDTO(final UserEntity entity) {
         this.email = entity.getEmail();
-        this.username = entity.getName();
+        this.username = entity.getUsername();
         this.profileImage = entity.getProfile_image_url();
         this.phoneNum = entity.getPhoneNum();
         this.birthYear = entity.getBirthYear();

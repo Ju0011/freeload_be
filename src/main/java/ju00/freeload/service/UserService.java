@@ -44,7 +44,8 @@ public class UserService {
         if (originUser.isPresent()) {
             UserEntity editedUser = originUser.get();
             editedUser.setEmail(updatedUser.getEmail());
-            editedUser.setName(updatedUser.getName());
+            editedUser.setUsername(updatedUser.getUsername());
+            System.out.println("유저이름: " + updatedUser.getUsername());
             editedUser.setProfile_image_url(updatedUser.getProfile_image_url());
             editedUser.setBirthYear(updatedUser.getBirthYear());
             editedUser.setGender(updatedUser.getGender());
