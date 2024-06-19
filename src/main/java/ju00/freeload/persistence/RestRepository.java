@@ -25,4 +25,7 @@ public interface RestRepository extends JpaRepository<RestEntity, Long> {
 
     @Query("SELECT r.restNm FROM RestEntity r WHERE r.svarCd = :svarCd")
     String findRestNmBySvarCd(String svarCd);
+
+    @Query("SELECT l FROM RestEntity l WHERE l.latitude IS NOT NULL AND l.longitude IS NOT NULL")
+    List<RestEntity> findAllWithLatitudeAndLongitude();
 }

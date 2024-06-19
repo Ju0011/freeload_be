@@ -1,5 +1,6 @@
 package ju00.freeload.controller;
 import ju00.freeload.model.RestEntity;
+import ju00.freeload.model.ReviewEntity;
 import ju00.freeload.model.WishEntity;
 import ju00.freeload.persistence.WishRepository;
 import ju00.freeload.service.ApiRestService;
@@ -23,7 +24,6 @@ public class ApiRestController {
 
 
      //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-
     @GetMapping("/{routeNm}/{updown}")
     public ResponseEntity<?> retrieveRestTable(@PathVariable("routeNm") String routeNm, @PathVariable("updown") String updown) {
         if(updown.equals("down")){
@@ -101,6 +101,25 @@ public class ApiRestController {
             // (7) ResponseDTO를 리턴한다.
             return ResponseEntity.ok().body(response);
         }
+    }
+
+
+    //푸쉬알림을 위한 위,경도 값만 있는 휴게소 출력
+    @GetMapping("/all")
+    public ResponseEntity<?> retrieveAll() {
+
+        // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다
+        List<RestEntity> entities = service.retrieveAll();
+
+        // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 ReviewDTO리스트로 변환한다.
+        List<RestDTO> dtos = entities.stream().map(RestDTO::new).collect(Collectors.toList());
+
+        // (3) 변환된 ReviewDTO리스트를 이용해ResponseDTO를 초기화한다.
+        ResponseDTO<RestDTO> response = ResponseDTO.<RestDTO>builder().data(dtos).build();
+
+        // (4) ResponseDTO를 리턴한다.
+        return ResponseEntity.ok().body(response);
+
     }
 
 }

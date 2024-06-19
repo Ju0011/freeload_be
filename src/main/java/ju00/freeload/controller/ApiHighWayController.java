@@ -14,14 +14,14 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("rest")
+@RequestMapping("road")
 public class ApiHighWayController {
 
 //    private ApiRestService service;
     private final ApiRestService service;
 
      //Rest 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> retrieveHighWay() {
 
         // (1) 서비스 메서드의 retrieve메서드를 사용해 테이블을 가져온다

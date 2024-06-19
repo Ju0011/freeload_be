@@ -39,10 +39,10 @@ public class ApiRestService {
         }
     }
 
-    //REST 테이블을 검색하는 리포지터리, 서비스, 컨트롤러 구현 - retrieve 메서드 - 고속도로 위 휴게소 리스트
-//    public List<RestEntity> retrieve(final String routeNm, final String gudClssCd) {
-//        return repository.findByRouteNmAndGudClssCd(routeNm, gudClssCd);
-//    }
+    //push를 위한 위,경도가 있는 휴게소만 출력
+    public List<RestEntity> retrieveAll() {
+        return repository.findAllWithLatitudeAndLongitude();
+    }
 
     public List<RestEntity> retrieve(final String routeNm, final String updown) {
         return repository.findByRouteNmAndGudClssCd(routeNm, updown);
