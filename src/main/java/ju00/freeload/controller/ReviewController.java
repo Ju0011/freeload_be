@@ -67,9 +67,8 @@ public class ReviewController {
     public ResponseEntity<?> createReview(@RequestPart(value = "dto") ReviewDTO dto, @RequestPart(value = "file") MultipartFile file) {
         try {
 
-            // 이미지 업로드
+            // 이미지 업로드 후 주소 저장
             String imageUrl = imageUploadService.uploadImage(file);
-
 
             // (1) ReviewEntity로 변환한다.
             ReviewEntity entity = ReviewDTO.toEntity(dto);
@@ -78,7 +77,6 @@ public class ReviewController {
             String svarCd = entity.getSvarCd();
             String restNm = restRepository.findRestNmBySvarCd(svarCd);
             entity.setRestNm(restNm);
-
 
             // (2) id를 null로 초기화 한다. 생성 당시에는 id가 없어야 하기 때문
             entity.setReview_id(null);

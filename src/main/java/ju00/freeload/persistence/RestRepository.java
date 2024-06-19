@@ -16,7 +16,6 @@ public interface RestRepository extends JpaRepository<RestEntity, Long> {
 
     List<RestEntity> findBySvarCd(String svarCd);
 
-
     @Query(value = "SELECT DISTINCT routeCd, routeNm FROM rest", nativeQuery = true)
     List<ApiRestService.RouteCdProjection> findDistinctRouteCdAndRouteNm();
 
@@ -27,6 +26,3 @@ public interface RestRepository extends JpaRepository<RestEntity, Long> {
     @Query("SELECT r.restNm FROM RestEntity r WHERE r.svarCd = :svarCd")
     String findRestNmBySvarCd(String svarCd);
 }
-
-// 스프링 데이터가 JPA 메서드 이름을 파싱해서
-// select * from rest WHERE routeNm = '{routeNm}' and  gudClssCd = {'gudClssCd'} 쿼리 작성해 실행

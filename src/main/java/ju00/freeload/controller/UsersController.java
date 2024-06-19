@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -38,12 +39,9 @@ public class UsersController {
 
     }
 
+    // 가입된 유저인지 확인
     @PostMapping("/check")
     public ResponseEntity<ResponseDTO<UserDTO>> receiveKakaoUserInfo(@RequestBody UserEntity userInfo) {
-        System.out.println("닉네임: " + userInfo.getNickname());
-        System.out.println("이메일: " + userInfo.getEmail());
-        System.out.println("프로필 이미지: " + userInfo.getProfile_image_url());
-
         boolean exists = service.checkEmailExists(userInfo.getEmail());
         System.out.println("이메일 존재여부: " + exists);
 
@@ -57,7 +55,7 @@ public class UsersController {
 
         } else {    //기존유저일때
             // (1) 서비스 메서드의 checkFindEmail 메서드를 사용해 테이블을 가져온다
-            List<UserEntity> entities = service.checkFindEmail(userInfo.getEmail());
+            Optional<UserEntity> entities = service.checkFindEmail(userInfo.getEmail());
 
             // (2) 자바 스트림을 이용해 리턴된 엔티티 리스트를 UserDTO리스트로 변환한다.
             List<UserDTO> dtos = entities.stream().map(UserDTO::new).collect(Collectors.toList());
@@ -65,7 +63,7 @@ public class UsersController {
             // (6) 변환된 UserDTO리스트를 이용해 ResponseDTO를 초기화한다.
             ResponseDTO<UserDTO> response = ResponseDTO.<UserDTO>builder().data(dtos).build();
             response.setMessage(true);
-            System.out.println("response: " + response);
+            response.setStatus("이미 가입된 회원입니다.");
             // (7) ResponseDTO를 리턴한다.
             return ResponseEntity.ok().body(response);
         }
@@ -75,15 +73,20 @@ public class UsersController {
 
     // 추가정보 입력 저장
     @PostMapping("/join")
-    public ResponseEntity<?> retrieveRestTable(@RequestBody UserEntity userInfo) {
-        System.out.println("이름: " + userInfo.getName());
-        System.out.println("핸드폰: " + userInfo.getPhoneNum());
-        System.out.println("출생년도: " + userInfo.getBirthYear());
-        System.out.println("성별: " + userInfo.getGender());
-        System.out.println("이메일: " + userInfo.getEmail());
-
+    public ResponseEntity<?> joinUser(@RequestBody UserEntity userInfo) {
         service.saveUser(userInfo);
 
         return ResponseEntity.ok("추가입력 성공입니다");
+    }
+
+    // 유저 정보 수정
+    @PutMapping("/edit")
+    public ResponseEntity<?> editUser(@RequestBody UserEntity userInfo) {
+        try {
+            service.updateUser(userInfo);
+            return ResponseEntity.ok("수정 성공");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
     }
 }

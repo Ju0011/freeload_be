@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor    // final 변수들, 필드들을 매개변수로 하는 생성자를 자동으로 생성
@@ -24,7 +25,7 @@ public class UserService {
         return repository.existsByEmail(email);
     }
 
-    public List<UserEntity> checkFindEmail(final String email) {
+    public Optional<UserEntity> checkFindEmail(final String email) {
         return repository.findByEmail(email);
     }
 
@@ -35,5 +36,24 @@ public class UserService {
 
     public List<UserEntity> findDetailByEmail(final String email) {
         return repository.findAllByEmail(email);
+    }
+
+    //유저 업데이트
+    public UserEntity updateUser(UserEntity updatedUser) {
+        Optional<UserEntity> originUser = repository.findByEmail(updatedUser.getEmail());
+        if (originUser.isPresent()) {
+            UserEntity editedUser = originUser.get();
+            editedUser.setEmail(updatedUser.getEmail());
+            editedUser.setName(updatedUser.getName());
+            editedUser.setProfile_image_url(updatedUser.getProfile_image_url());
+            editedUser.setBirthYear(updatedUser.getBirthYear());
+            editedUser.setGender(updatedUser.getGender());
+            editedUser.setSave(updatedUser.getSave());
+            editedUser.setPhoneNum(updatedUser.getPhoneNum());
+
+            return repository.save(editedUser);
+        } else {
+            throw new RuntimeException("User not found with email " + updatedUser.getEmail());
+        }
     }
 }
