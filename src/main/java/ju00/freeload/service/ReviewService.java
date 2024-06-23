@@ -1,9 +1,7 @@
 package ju00.freeload.service;
 
 import ju00.freeload.model.ReviewEntity;
-import ju00.freeload.model.UserEntity;
 import ju00.freeload.persistence.ReivewRepository;
-import ju00.freeload.persistence.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
