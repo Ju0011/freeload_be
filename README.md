@@ -4,8 +4,7 @@
 
   <br><br>
   
-  
-  ![logo](https://img.shields.io/badge/FreeLoad-40AEF0.svg?style=for-the-badge)
+  ![logo](https://github.com/user-attachments/assets/617e17fc-f5cf-4b3f-a64e-9ee2eaa94a49)
 </div>
 
 ## ⭐️ 앱 다운로드 링크
@@ -20,7 +19,7 @@
 <br>
 
 ## 🏗 아키텍처
-> ![image](https://github.com/GASIP-PROJECT/gasip-backend/assets/114489245/fa9e9d48-17d2-4d78-9ff3-f77e33073c98)
+> <img width="980" alt="스크린샷 2024-06-19 오후 4 33 01" src="https://github.com/user-attachments/assets/0aca24c6-5d64-49db-97c7-f292f2eaf435">
 
 
 <br>
@@ -47,7 +46,7 @@
 <br>
 
 ## ⭐️ 핵심 기능
-
+<!--
 ### ❗️강조하고 싶은 기능!
 - [조회수 중복 증가 방지 로직](https://hyem5019.tistory.com/entry/Gasip-%EA%B2%8C%EC%8B%9C%EA%B8%80-%EC%A1%B0%ED%9A%8C%EC%88%98-%EC%A4%91%EB%B3%B5-%EB%B0%A9%EC%A7%80-%EC%B2%98%EB%A6%AC-%EB%A1%9C%EC%A7%81-%EA%B5%AC%ED%98%84) : 5분 이내 동일 게시글 접근 시 조회수 증가 방지 적용
 - [조회수 동시성 보장 로직](https://hyem5019.tistory.com/entry/Gasip-Redis-Sync-Schedule-%EC%9D%84-%EC%A0%81%EC%9A%A9%ED%95%B4-%EC%A1%B0%ED%9A%8C%EC%88%98-%EB%8F%99%EC%8B%9C%EC%84%B1-%EC%B2%98%EB%A6%AC) : 유튜브 조회수 알고리즘에서 착안한 Sync Schedule 기법 적용
@@ -88,37 +87,7 @@
 
 > 사용자는 특정 교수 페이지에 집근하여 교수 기본 정보를 확인할 수 있다. <br>
 > 사용자는 교수 이름을 통해 교수를 검색할 수 있다. <br>
-
-
-### 좋아요
-
-> 사용자는 특정 게시글, 댓글에 대해 좋아요를 등록할 수 있다. <br>
-> 사용자는 기존에 등록한 좋아요를 취소할 수 있다. <br>
-> 동시에 여러 사용자가 특정 게시글 좋아요를 누를 경우, 동시성이 보장된다. <br>
-
-### 댓글
-
-> 사용자는 특정 게시글에 댓글을 작성할 수 있다. <br>
-> 사용자는 다른 사용자가 작성한 댓글을 제한없이 조회할 수 있다. <br>
-> 사용자는 자신이 작성한 댓글을 수정하거나 삭제할 수 있다. <br>
-> 사용자가 탈퇴해도 댓글은 보존된다. <br>
-> 댓글이 삭제될 경우, 하위 대댓글 또한 삭제된다. <br>
-> 대댓글이 삭제될 경우, 상위 댓글은 삭제되지 않는다. <br>
-> 사용자가 작성한 댓글이 신고 누적횟수 5회를 넘기는 경우, 필터링 되어 노출되지 않는다. <br>
-
-### 평점
-
-> 사용자는 특정 교수에 대한 평점을 등록할 수 있다. <br>
-> 사용자는 기존 등록한 평점을 수정할 수 있다. <br>
-> 사용자는 특정 교수에 대한 평균 평점을 조회할 수 있다. <br>
-> 사용자는 본인이 해당 교수에 대해 평점을 등록했는지 여부를 확인할 수 있다.<br>
-
-### 검색
-
-> 사용자는 특정 교수 이름으로 교수를 검색할 수 있다. <br>
-> 사용자는 특정 학과 이름으로 학과를 검색할 수 있다. <br>
-> 사용자는 게시글 내용으로 게시글을 검색할 수 있다. <br>
-
+--!>
 <br>
 
 ## ⚙️ 프로젝트 세팅
@@ -161,16 +130,16 @@
 ![Jmeter](https://img.shields.io/badge/Apache_JMeter-D22128.svg?style=for-the-badge&logo=apachejmeter&logoColor=white)
 
 <br>
-
+<!--
 ## 🧑‍🤝‍🧑 조원 & 역할
 
 | 이름  | 역할                                                                                                         |
 |----- |------------------------------------------------------------------------------------------------------------|
 | 박주영  | 회원 도메인 개발, 게시글 도메인 개발, 댓글 도메인 개발, 교수 도메인 개발, 평점 도메인 개발, 서버와 DevOps 설정관리, 디스코드 웹훅, 피그마 와이어프레임 초안 작성, 서비스 기획 |
 | 신태일  | 검색 도메인 개발, 게시글 도메인 개발, 댓글 도메인 개발, 좋아요 도메인 개발, 교수 도메인 개발, 카테고리 도메인 개발, 신고하기 도메인 개발, 조회 및 검색 성능 최적화, 디스코드 웹훅, 서버와 DevOps 설정관리, 서비스 기획|
-
+--!>
 <br>
 
 ## 📐 ERD 설계도
 
-<img width="984" alt="image" src="https://github.com/GASIP-PROJECT/gasip-backend/assets/114489245/11471c0a-56c1-4ea5-a3e2-70c2aa8c0ba8">
+<img width="984" alt="image" src="https://github.com/user-attachments/assets/9ff30ca1-7ffd-40db-b006-eef25ac4961d">
