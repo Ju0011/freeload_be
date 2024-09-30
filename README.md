@@ -1,7 +1,7 @@
 # FreeLoad : 휴게소 웹/앱 서비스 개발
 <div align="center">
   <br>
-  <img width="234" alt="image" src="https://github.com/GASIP-PROJECT/gasip-backend/assets/114489245/55e77169-b2fa-4220-ba23-349dcb8d41ed">
+
   <br><br>
   
   ![logo](https://img.shields.io/badge/GASIP-40AEF0.svg?style=for-the-badge)
@@ -30,12 +30,12 @@
 - [배경] 공공데이터를 활용한 서비스 개발
 
 <br>
-
+<!--
 ## 📝 프로젝트 목표
 - 가천대학교 학생 사이에서 지속적으로 사용되는 커뮤니티 앱 개발 (일 평균 10명 이상)
 - 서버 운영 비용 최소화 (AWS 청구서 기준 월 3만원 이하)
 - 사용자 초기 접근성 및 인지도 강화
-
+--!>
 <br>
 
 ## 🚀 프로젝트 인원 및 기간
