@@ -4,7 +4,8 @@
 
   <br><br>
   
-  ![logo](https://img.shields.io/badge/GASIP-40AEF0.svg?style=for-the-badge)
+  
+  ![logo](https://img.shields.io/badge/FreeLoad-40AEF0.svg?style=for-the-badge)
 </div>
 
 ## ⭐️ 앱 다운로드 링크
