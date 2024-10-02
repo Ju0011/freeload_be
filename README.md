@@ -46,13 +46,13 @@
 <br>
 
 ## ⭐️ 핵심 기능
-<!--
+
 ### ❗️강조하고 싶은 기능!
 - [조회수 중복 증가 방지 로직](https://hyem5019.tistory.com/entry/Gasip-%EA%B2%8C%EC%8B%9C%EA%B8%80-%EC%A1%B0%ED%9A%8C%EC%88%98-%EC%A4%91%EB%B3%B5-%EB%B0%A9%EC%A7%80-%EC%B2%98%EB%A6%AC-%EB%A1%9C%EC%A7%81-%EA%B5%AC%ED%98%84) : 5분 이내 동일 게시글 접근 시 조회수 증가 방지 적용
 - [조회수 동시성 보장 로직](https://hyem5019.tistory.com/entry/Gasip-Redis-Sync-Schedule-%EC%9D%84-%EC%A0%81%EC%9A%A9%ED%95%B4-%EC%A1%B0%ED%9A%8C%EC%88%98-%EB%8F%99%EC%8B%9C%EC%84%B1-%EC%B2%98%EB%A6%AC) : 유튜브 조회수 알고리즘에서 착안한 Sync Schedule 기법 적용
 
 <br>
-
+<!--
 ### 회원
 
 > 회원 가입을 통해 각자 고유의 아이디를 생성하여 로그인을 진행한다. <br>
